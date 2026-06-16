@@ -1,0 +1,83 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700;900&family=ZCOOL+KuaiLe&display=swap');
+
+:root{
+  --bg:#0f1320;
+  --bg-elev:#161b2c;
+  --bg-card:#1a2034;
+  --line:#2c3450;
+  --txt:#eef2ff;
+  --txt-dim:#9aa6c8;
+  --brand:#5b8cff;
+  --brand-2:#7a6bff;
+  --accent:#ffcb45;
+  --good:#54d28a;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  background:
+    radial-gradient(1000px 600px at 85% -8%, rgba(91,140,255,.20), transparent 60%),
+    radial-gradient(900px 700px at 5% 5%, rgba(122,107,255,.16), transparent 55%),
+    radial-gradient(800px 600px at 50% 112%, rgba(84,210,138,.12), transparent 55%),
+    var(--bg);
+  background-attachment:fixed;
+  color:var(--txt);
+  font-family:'Noto Sans SC',sans-serif;
+  min-height:100vh;
+  line-height:1.6;
+}
+a{color:inherit;text-decoration:none}
+
+/* 吸顶导航 */
+header{position:sticky;top:0;z-index:50;background:rgba(15,19,32,.82);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.nav{max-width:1180px;margin:0 auto;padding:14px 24px;display:flex;align-items:center;gap:28px}
+.logo{font-family:'ZCOOL KuaiLe',cursive;font-size:24px;display:flex;align-items:center;gap:9px}
+.logo .mark{width:30px;height:30px;border-radius:9px;background:linear-gradient(135deg,var(--brand),var(--brand-2));display:grid;place-items:center;font-size:15px;color:#fff;box-shadow:0 0 16px -2px rgba(91,140,255,.6)}
+.logo-sub{font-family:'Noto Sans SC',sans-serif;font-size:13px;font-weight:500;color:var(--txt-dim);margin-left:2px}
+.nav-links{display:flex;gap:22px;font-size:15px;color:var(--txt-dim);margin-left:auto}
+.nav-links a:hover,.nav-links a.on{color:var(--txt)}
+.nav-links a.on{color:var(--accent)}
+
+.wrap{max-width:1180px;margin:0 auto;padding:0 24px}
+.crumb{font-size:13px;color:var(--txt-dim);margin-bottom:14px}
+.crumb a:hover{color:var(--accent)}
+
+/* 通用区块标题 */
+.section-head{display:flex;justify-content:space-between;gap:18px;align-items:flex-end;margin-bottom:18px}
+.section-head h2{font-size:24px;margin-bottom:4px}
+.section-head p{color:var(--txt-dim);font-size:14.5px}
+.section-head a{color:var(--accent);font-size:14px;font-weight:900;white-space:nowrap}
+
+footer{border-top:1px solid var(--line);padding:30px 0;color:var(--txt-dim);font-size:13px;text-align:center;margin-top:60px}
+footer .foot-links{display:flex;justify-content:center;gap:22px;flex-wrap:wrap;margin-bottom:12px}
+footer .foot-links a{color:var(--txt-dim)}
+footer .foot-links a:hover{color:var(--accent)}
+footer .foot-note{color:var(--txt-dim);max-width:680px;margin:0 auto;line-height:1.7}
+
+/* 详情/文章页通用排版（about / privacy / contact / articles 共用） */
+.detail{padding-top:24px}
+.detail h1{font-size:38px;font-weight:900;letter-spacing:-.5px;margin-top:6px}
+.detail h1 .em{background:linear-gradient(120deg,var(--brand),var(--brand-2) 55%,var(--accent));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.detail .lead{color:var(--txt-dim);font-size:16.5px;margin:14px 0 18px;max-width:780px}
+.detail-layout-single{max-width:840px;margin-bottom:40px}
+.sec{background:var(--bg-card);border:1px solid var(--line);border-radius:16px;padding:24px;margin-bottom:18px}
+.sec h2{font-size:18px;color:var(--accent);margin-bottom:12px}
+.sec h3{font-size:16px;color:var(--txt);margin:16px 0 8px}
+.sec p{font-size:15.5px;color:var(--txt);line-height:1.75;margin-bottom:10px}
+.sec p:last-child{margin-bottom:0}
+.sec a{color:var(--accent)}
+.sec strong{color:var(--txt)}
+.hint{font-size:13px;color:var(--txt-dim)!important}
+.email{font-size:18px;font-weight:700;margin:6px 0 8px}
+.email a{color:var(--accent)}
+.kv{list-style:none;display:flex;flex-direction:column;gap:9px;margin:4px 0 12px}
+.kv li{font-size:15px;color:var(--txt-dim);line-height:1.7;padding-left:18px;position:relative}
+.kv li::before{content:'›';position:absolute;left:0;top:-1px;color:var(--accent);font-weight:700}
+.kv li strong{color:var(--txt)}
+.next p{color:var(--txt-dim)}
+
+@media(max-width:920px){
+  .nav-links{display:none}
+  .detail h1{font-size:28px}
+  .section-head{align-items:flex-start;flex-direction:column}
+}

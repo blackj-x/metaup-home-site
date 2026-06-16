@@ -1,0 +1,89 @@
+---
+import Base from '../layouts/Base.astro';
+import { liveSites } from '../data/sites';
+import { articles } from '../data/articles';
+
+const title = '关于站群 - MetaUp 游戏攻略站群';
+const description =
+  '关于 MetaUp(metaup.pro):一个独立运营的游戏攻略站群门户。我们为每款游戏单独建专站,基于公开游戏数据独立整理、核对、改写成中文攻略,配原创 SVG 地图。非官方,与各游戏厂商无从属关系。';
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'AboutPage',
+      name: title,
+      description,
+      inLanguage: 'zh-CN',
+      url: new URL('/about', Astro.site).href,
+    },
+    {
+      '@type': 'Organization',
+      name: 'MetaUp 游戏攻略站群',
+      url: new URL('/', Astro.site).href,
+    },
+    {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: '首页', item: new URL('/', Astro.site).href },
+        { '@type': 'ListItem', position: 2, name: '关于站群' },
+      ],
+    },
+  ],
+};
+---
+<Base title={title} description={description} active="about" jsonLd={jsonLd}>
+  <div class="wrap detail">
+    <div class="crumb"><a href="/">首页</a> / 关于站群</div>
+    <h1>关于<span class="em">站群</span></h1>
+    <p class="lead">MetaUp(metaup.pro)是一个独立运营的游戏攻略站群门户。我们不做"什么游戏都收一点"的大杂烩,而是为每款游戏单独建一个专站,把它繁杂的角色、怪物、地图与机制,重新整理、逐项核对、用中文独立成文,再配上自己手画的原创 SVG 地图。这一页讲清楚我们是谁、内容怎么来、做给谁看。</p>
+
+    <div class="detail-layout-single">
+      <main>
+        <section class="sec">
+          <h2>🧭 MetaUp 是什么</h2>
+          <p>它是一个游戏攻略<strong>站群的总入口</strong>,本身也是一个有内容的站:你可以在这里挑要看哪款游戏的攻略、读我们独有的编辑文章、了解我们做攻略的方法。目前站群包含:</p>
+          <ul class="kv">
+            {liveSites.map((s) => (
+              <li><strong>{s.name}</strong>(<a href={s.url} rel="noopener" target="_blank">{s.url.replace('https://', '')}</a>):{s.game} · {s.gameEn} 的中文攻略专站。</li>
+            ))}
+            <li><strong>母站编辑精选</strong>:{articles.length} 篇只在 metaup.pro 存在的原创文,讲方法论、给玩家判断工具、做跨游戏盘点。</li>
+          </ul>
+          <p class="hint">站群会随我们做厚做散的节奏持续增加新游戏专站,而不是用一套模板批量铺站。</p>
+        </section>
+
+        <section class="sec">
+          <h2>📚 内容怎么来的</h2>
+          <p>本站群内容由我们<strong>基于公开游戏数据独立整理、改写而成</strong>,不是机器翻译搬运,也不是对某个 Wiki 的逐句复制:</p>
+          <ul class="kv">
+            <li><strong>客观数据字段</strong>(角色阵营、技能机制、怪物行为、地图任务点等)取自游戏内可观察的事实与社区维护的公开资料。这类客观游戏信息属于事实,不构成版权问题。</li>
+            <li><strong>攻略正文</strong>(打法、取舍、路线、博弈)由我们在理解机制后<strong>重新组织、用中文独立成文</strong>,结合实战给出建议——这是站群的核心增值。</li>
+            <li><strong>地图与图示</strong>采用<strong>原创 SVG 绘制</strong>,规避官方截图的版权风险。</li>
+            <li>查不到准确数值的内容,我们标注为「估计/推断」,不伪装成确定事实。每条数据都经事实校验闸。</li>
+          </ul>
+          <p>想看完整流程,请读<a href="/articles/how-we-make-guides">《我们怎么做游戏攻略》</a>。</p>
+        </section>
+
+        <section class="sec">
+          <h2>👥 做给谁看</h2>
+          <p>面向所有想"开局前查一查、上手不踩坑"的中文玩家——新人想快速记住角色 / 怪物,老手想抠路线、压低死亡率、提升对局水平。我们追求的是「<strong>来这里一查就有答案</strong>」,而不是堆砌没人看的字数。</p>
+        </section>
+
+        <section class="sec">
+          <h2>🛰 站群结构:各站独立,标准统一</h2>
+          <p>每款游戏在 MetaUp 下<strong>独立成站、各占一个二级域名</strong>,结构按各自游戏的特点设计,而不是硬套同一个模板。但所有站<strong>由同一团队运营,共享同一套对资料准确性与原创性的标准</strong>:原创成文、事实校验、原创地图、不确定就如实标。各专站之间也会互相内链,方便你在不同游戏间跳转。</p>
+        </section>
+
+        <section class="sec">
+          <h2>⚖️ 版权与非官方声明</h2>
+          <p>各游戏的名称、美术资产与商标,版权归各自的开发商与发行方所有。<strong>MetaUp 及旗下各专站均为非官方的玩家攻略站,与任何游戏官方及其发行方没有从属或合作关系</strong>,仅出于信息与攻略目的引用公开的游戏事实数据。我们不声称拥有任何官方授权,也不冒充官方。如有权利方认为内容存在问题,欢迎通过<a href="/contact">联系页</a>与我们沟通处理。</p>
+        </section>
+
+        <section class="sec next">
+          <h2>👉 开始使用</h2>
+          <p>挑游戏从<a href="/#sites">攻略站群</a>入口进;想了解我们的方法看<a href="/articles">编辑精选</a>;数据如何处理见<a href="/privacy">隐私政策</a>。</p>
+        </section>
+      </main>
+    </div>
+  </div>
+</Base>

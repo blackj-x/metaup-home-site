@@ -1,0 +1,58 @@
+---
+import Base from '../../layouts/Base.astro';
+import { articles } from '../../data/articles';
+
+const title = '编辑精选 - MetaUp 游戏攻略站群';
+const description =
+  'MetaUp 母站独有的原创编辑文:讲清我们怎么做游戏攻略数据、如何做事实校验、怎么分辨一份攻略数据靠不靠谱,以及适合新手入坑的联机合作游戏盘点。';
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'CollectionPage',
+      name: title,
+      description,
+      inLanguage: 'zh-CN',
+      url: new URL('/articles', Astro.site).href,
+    },
+    {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: '首页', item: new URL('/', Astro.site).href },
+        { '@type': 'ListItem', position: 2, name: '编辑精选' },
+      ],
+    },
+  ],
+};
+---
+<Base title={title} description={description} active="articles" jsonLd={jsonLd}>
+  <div class="wrap detail">
+    <div class="crumb"><a href="/">首页</a> / 编辑精选</div>
+    <h1>编辑<span class="em">精选</span></h1>
+    <p class="lead">这些文章只在母站存在,是各游戏专站里没有的内容:讲我们做攻略的方法、给玩家的判断工具,以及跨游戏的原创盘点。不灌水、不堆 SEO 关键词,只写真有信息量的东西。</p>
+
+    <ul class="art-grid">
+      {articles.map((a) => (
+        <li>
+          <a href={`/articles/${a.slug}`}>
+            <span class="k">{a.kicker}</span>
+            <h2>{a.title}</h2>
+            <p>{a.excerpt}</p>
+            <span class="meta">{a.date} · 原创编辑文</span>
+          </a>
+        </li>
+      ))}
+    </ul>
+  </div>
+</Base>
+
+<style>
+  .art-grid{list-style:none;display:grid;grid-template-columns:1fr;gap:16px;max-width:840px;margin-bottom:40px}
+  .art-grid li a{display:block;background:var(--bg-card);border:1px solid var(--line);border-radius:16px;padding:22px;transition:.18s}
+  .art-grid li a:hover{border-color:var(--txt-dim);transform:translateY(-3px)}
+  .art-grid .k{display:inline-block;font-size:11px;font-weight:900;color:var(--brand);background:rgba(91,140,255,.14);padding:3px 10px;border-radius:6px;margin-bottom:10px}
+  .art-grid h2{font-size:20px;line-height:1.4;margin-bottom:8px;color:var(--txt)}
+  .art-grid p{font-size:14.5px;color:var(--txt-dim);line-height:1.7;margin-bottom:10px}
+  .art-grid .meta{font-size:12.5px;color:var(--txt-dim)}
+</style>

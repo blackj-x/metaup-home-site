@@ -1,0 +1,102 @@
+---
+import '../styles/global.css';
+import { SITE } from '../data/site';
+
+export interface Props {
+  title: string;
+  description: string;
+  /** 结构化数据 JSON-LD，可选 */
+  jsonLd?: object;
+  /** 当前导航高亮 */
+  active?: string;
+  /** 社交分享图，可覆盖默认 */
+  ogImage?: string;
+}
+
+const { title, description, jsonLd, active, ogImage } = Astro.props;
+const canonical = new URL(Astro.url.pathname, Astro.site).href;
+const ogImageUrl = new URL(ogImage ?? SITE.defaultOgImage, Astro.site).href;
+const isHome = Astro.url.pathname === '/';
+
+// 网站级结构化数据（仅首页输出，避免重复）
+const websiteLd = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  name: SITE.name,
+  url: new URL('/', Astro.site).href,
+  inLanguage: 'zh-CN',
+};
+
+const links = [
+  { href: '/', label: '首页', key: 'home' },
+  { href: '/#sites', label: '攻略站群', key: 'sites' },
+  { href: '/articles', label: '编辑精选', key: 'articles' },
+  { href: '/about', label: '关于', key: 'about' },
+];
+---
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content={SITE.themeColor} />
+  <title>{title}</title>
+  <meta name="description" content={description} />
+  <link rel="canonical" href={canonical} />
+  <!-- Open Graph -->
+  <meta property="og:type" content={isHome ? 'website' : 'article'} />
+  <meta property="og:site_name" content={SITE.name} />
+  <meta property="og:locale" content={SITE.locale} />
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  <meta property="og:url" content={canonical} />
+  <meta property="og:image" content={ogImageUrl} />
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content={title} />
+  <meta name="twitter:description" content={description} />
+  <meta name="twitter:image" content={ogImageUrl} />
+  {SITE.googleSiteVerification && <meta name="google-site-verification" content={SITE.googleSiteVerification} />}
+  {SITE.adsenseClient && <meta name="google-adsense-account" content={SITE.adsenseClient} />}
+  {isHome && <script type="application/ld+json" set:html={JSON.stringify(websiteLd)} />}
+  {jsonLd && <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />}
+  {SITE.adsenseClient && (
+    <script
+      is:inline
+      async
+      src={`https://pagead2.googleapis.com/pagead/js/adsbygoogle.js?client=${SITE.adsenseClient}`}
+      crossorigin="anonymous"
+    />
+  )}
+  {SITE.cfBeaconToken && (
+    <script
+      is:inline
+      defer
+      src="https://static.cloudflareinsights.com/beacon.min.js"
+      data-cf-beacon={`{"token": "${SITE.cfBeaconToken}"}`}
+    />
+  )}
+</head>
+<body>
+  <header>
+    <nav class="nav">
+      <a href="/" class="logo"><span class="mark">▲</span>MetaUp<span class="logo-sub">游戏攻略站群</span></a>
+      <div class="nav-links">
+        {links.map((l) => (
+          <a href={l.href} class={active === l.key ? 'on' : ''}>{l.label}</a>
+        ))}
+      </div>
+    </nav>
+  </header>
+  <slot />
+  <footer>
+    <nav class="foot-links">
+      <a href="/about">关于站群</a>
+      <a href="/privacy">隐私政策</a>
+      <a href="/contact">联系我们</a>
+      <a href="/articles">编辑精选</a>
+    </nav>
+    <div class="foot-note">MetaUp 游戏攻略站群 · 各游戏独立成站、同一套准确性与原创性标准 · 基于公开游戏数据独立改写，与各游戏官方无关</div>
+  </footer>
+</body>
+</html>

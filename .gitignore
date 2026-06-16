@@ -1,0 +1,18 @@
+# build output
+dist/
+.astro/
+
+# deps
+node_modules/
+
+# wrangler
+.wrangler/
+
+# misc
+.DS_Store
+*.log
+
+# AI 工具本地指引(不入库,沿用 lc/ggd 站惯例)
+CLAUDE.md
+AGENTS.md
+.superpowers/

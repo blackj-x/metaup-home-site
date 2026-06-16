@@ -1,0 +1,191 @@
+---
+import Base from '../layouts/Base.astro';
+import { sites, liveSites } from '../data/sites';
+import { articles } from '../data/articles';
+
+const title = 'MetaUp 游戏攻略站群 - 做厚、做准、原创的游戏攻略数据库';
+const description =
+  'MetaUp（metaup.pro）是一个独立的游戏攻略站群门户:每款游戏一个专站,把繁杂的角色、怪物、地图、机制整理、核对、改写成一查就懂的中文攻略,配原创 SVG 地图。覆盖《鹅鸭杀》《致命公司》,持续扩充。';
+
+// 站群动态:手写 + 取真实子站数,体现「活着、在更新」
+const updates = [
+  {
+    date: '2026-06-16',
+    site: '站群',
+    text: '上线 MetaUp 母站门户,统一站群入口与编辑精选;明确「每款游戏独立成站、同一套准确性与原创性标准」的定位。',
+  },
+  {
+    date: '2026-06-08',
+    site: '致命公司攻略社',
+    text: '《致命公司》攻略站建成:33 种怪物打法 + 卫星地形 + 物品价值 + 终端指令 + 版本解读,数据管线全程事实校验。',
+  },
+  {
+    date: '2026-06-06',
+    site: '鹅鸭攻略社',
+    text: '《鹅鸭杀》全角色身份图鉴 + 原创 SVG 地图点位上线,作为站群首个验证站跑通「JSON 唯一数据源 → 自动生成页面」的生产线。',
+  },
+];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'CollectionPage',
+  name: title,
+  description,
+  inLanguage: 'zh-CN',
+  url: new URL('/', Astro.site).href,
+  hasPart: liveSites.map((s) => ({ '@type': 'WebSite', name: s.name, url: s.url })),
+};
+---
+<Base title={title} description={description} active="home" jsonLd={jsonLd}>
+  <div class="wrap">
+    <section class="hero">
+      <div class="hero-copy">
+        <div class="kicker">游戏攻略站群门户 · metaup.pro</div>
+        <h1>把攻略做<span class="em">厚、准、原创</span></h1>
+        <p class="sub">
+          MetaUp 不是又一个抄来抄去的 wiki 镜像。我们为每款游戏单独建一个专站,把它繁杂的角色、怪物、地图和机制,重新整理、逐项核对、用中文独立成文,再配上自己手画的 SVG 地图——让你开局前一查就懂,而不是被一屏过期数值和搬运内容劝退。这一页是站群的总入口:挑游戏、看我们怎么做攻略、读编辑精选。
+        </p>
+        <div class="hero-actions">
+          <a class="primary-btn" href="#sites">进入攻略站 ↓</a>
+          <a class="ghost-btn" href="/articles">看我们怎么做的</a>
+        </div>
+      </div>
+      <aside class="hero-stats" aria-label="站群概况">
+        <div class="stat-card">
+          <div class="stat-row"><b>{liveSites.length}</b><span>已上线专站</span></div>
+          <div class="stat-row"><b>{articles.length}</b><span>母站原创编辑文</span></div>
+          <div class="stat-row"><b>SVG</b><span>地图全部原创手绘</span></div>
+          <div class="stat-tag">每篇攻略经事实校验闸 · 查不到的数值标「估计/推断」</div>
+        </div>
+      </aside>
+    </section>
+
+    <section class="sites" id="sites">
+      <div class="section-head">
+        <div>
+          <h2>攻略站群</h2>
+          <p>每款游戏一个独立专站。点卡片进入对应站点。</p>
+        </div>
+      </div>
+      <div class="site-grid">
+        {sites.map((s) => (
+          <a
+            class="site-card"
+            href={s.url}
+            style={`--accent:${s.accent}`}
+            rel={s.status === 'live' ? 'noopener' : 'nofollow noopener'}
+            target="_blank"
+          >
+            <div class="site-top">
+              <div class="site-icon">{s.icon}</div>
+              <span class={`status ${s.status}`}>{s.status === 'live' ? '已上线' : '建设中'}</span>
+            </div>
+            <h3>{s.name}</h3>
+            <div class="site-game">{s.game} · {s.gameEn}</div>
+            <p class="site-tag">{s.tagline}</p>
+            <p class="site-blurb">{s.blurb}</p>
+            <div class="site-hl">
+              {s.highlights.map((h) => <span>{h}</span>)}
+            </div>
+            <div class="site-enter">进入 {s.url.replace('https://', '')} →</div>
+          </a>
+        ))}
+      </div>
+    </section>
+
+    <section class="grid-2">
+      <div class="feed">
+        <div class="section-head">
+          <div>
+            <h2>站群动态</h2>
+            <p>最近更新了哪些站、做了什么。</p>
+          </div>
+        </div>
+        <ul class="timeline">
+          {updates.map((u) => (
+            <li>
+              <div class="tl-head"><span class="tl-date">{u.date}</span><span class="tl-site">{u.site}</span></div>
+              <p>{u.text}</p>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <div class="editorial">
+        <div class="section-head">
+          <div>
+            <h2>编辑精选</h2>
+            <p>母站独有的原创文。</p>
+          </div>
+          <a href="/articles">全部 →</a>
+        </div>
+        <ul class="art-list">
+          {articles.map((a) => (
+            <li>
+              <a href={`/articles/${a.slug}`}>
+                <span class="art-kicker">{a.kicker}</span>
+                <strong>{a.title}</strong>
+                <span class="art-ex">{a.excerpt}</span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+  </div>
+</Base>
+
+<style>
+  .hero{padding:54px 0 36px;display:grid;grid-template-columns:minmax(0,1.25fr) minmax(300px,.75fr);gap:32px;align-items:center}
+  .kicker{color:var(--accent);font-size:13px;font-weight:900;letter-spacing:1px}
+  h1{font-size:52px;font-weight:900;line-height:1.1;margin-top:10px}
+  h1 .em{background:linear-gradient(120deg,var(--brand),var(--brand-2) 55%,var(--accent));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+  .sub{color:var(--txt-dim);margin-top:14px;max-width:660px;font-size:16.5px}
+  .hero-actions{display:flex;gap:12px;margin-top:24px;flex-wrap:wrap}
+  .primary-btn,.ghost-btn{min-height:44px;padding:10px 18px;border-radius:8px;font-weight:900;display:inline-flex;align-items:center;justify-content:center}
+  .primary-btn{background:var(--accent);color:#1a1407}
+  .ghost-btn{border:1px solid var(--line);background:rgba(26,32,52,.72);color:var(--txt)}
+  .hero-stats{display:flex}
+  .stat-card{width:100%;background:linear-gradient(160deg,rgba(26,32,52,.95),rgba(15,19,32,.8));border:1px solid var(--line);border-radius:18px;padding:20px;box-shadow:0 24px 60px -34px rgba(91,140,255,.9);position:relative;overflow:hidden}
+  .stat-card::before{content:"";position:absolute;inset:0 0 auto;height:5px;background:linear-gradient(90deg,var(--brand),var(--brand-2),var(--accent))}
+  .stat-row{display:flex;align-items:baseline;gap:12px;padding:11px 0;border-bottom:1px solid var(--line)}
+  .stat-row b{font-size:34px;color:var(--txt);min-width:78px}
+  .stat-row span{color:var(--txt-dim);font-size:14px}
+  .stat-tag{margin-top:14px;font-size:12.5px;color:var(--txt-dim);line-height:1.6}
+
+  .sites{margin:18px 0 12px}
+  .site-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(330px,1fr));gap:18px}
+  .site-card{background:var(--bg-card);border:1px solid var(--line);border-radius:18px;padding:22px;display:flex;flex-direction:column;transition:.18s;position:relative;overflow:hidden}
+  .site-card::before{content:"";position:absolute;inset:0 0 auto 0;height:4px;background:var(--accent);opacity:.9}
+  .site-card:hover{transform:translateY(-5px);border-color:var(--txt-dim);box-shadow:0 18px 44px -14px color-mix(in srgb,var(--accent) 60%,transparent)}
+  .site-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:14px}
+  .site-icon{width:54px;height:54px;border-radius:14px;display:grid;place-items:center;font-size:30px;background:color-mix(in srgb,var(--accent) 16%,transparent)}
+  .status{font-size:11px;font-weight:700;padding:4px 10px;border-radius:7px}
+  .status.live{background:rgba(84,210,138,.16);color:var(--good)}
+  .status.building{background:rgba(154,166,200,.16);color:var(--txt-dim)}
+  .site-card h3{font-size:21px;font-weight:900}
+  .site-game{font-size:12.5px;color:var(--txt-dim);margin:2px 0 10px}
+  .site-tag{font-size:14px;color:var(--accent);font-weight:700;margin-bottom:10px}
+  .site-blurb{font-size:14px;color:var(--txt-dim);line-height:1.72;margin-bottom:14px}
+  .site-hl{display:flex;gap:7px;flex-wrap:wrap;margin-top:auto}
+  .site-hl span{font-size:11.5px;color:var(--txt-dim);background:var(--bg-elev);border:1px solid var(--line);padding:4px 9px;border-radius:6px}
+  .site-enter{margin-top:16px;font-size:13.5px;font-weight:900;color:var(--accent)}
+
+  .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:44px}
+  .timeline{list-style:none;display:flex;flex-direction:column;gap:12px}
+  .timeline li{background:var(--bg-card);border:1px solid var(--line);border-radius:14px;padding:16px 18px}
+  .tl-head{display:flex;gap:10px;align-items:center;margin-bottom:6px}
+  .tl-date{font-size:12px;color:var(--txt-dim);font-variant-numeric:tabular-nums}
+  .tl-site{font-size:12px;font-weight:700;color:var(--accent);background:rgba(255,203,69,.12);padding:2px 8px;border-radius:6px}
+  .timeline p{font-size:14px;color:var(--txt-dim);line-height:1.7}
+
+  .art-list{list-style:none;display:flex;flex-direction:column;gap:12px}
+  .art-list li a{display:block;background:var(--bg-card);border:1px solid var(--line);border-radius:14px;padding:16px 18px;transition:.18s}
+  .art-list li a:hover{border-color:var(--txt-dim);transform:translateY(-3px)}
+  .art-kicker{display:inline-block;font-size:11px;font-weight:900;color:var(--brand);background:rgba(91,140,255,.14);padding:3px 9px;border-radius:6px;margin-bottom:8px}
+  .art-list strong{display:block;font-size:16px;line-height:1.45;margin-bottom:6px}
+  .art-ex{display:block;font-size:13.5px;color:var(--txt-dim);line-height:1.6}
+
+  @media(max-width:980px){.hero{grid-template-columns:1fr}.grid-2{grid-template-columns:1fr}}
+  @media(max-width:560px){h1{font-size:38px}.site-grid{grid-template-columns:1fr}}
+</style>
