@@ -8,8 +8,8 @@ export const SITE = {
   // 主题色（移动端浏览器地址栏）—— 站群中性深色
   themeColor: '#0f1320',
   // Cloudflare Web Analytics (RUM) beacon token（留空则不输出统计脚本）
-  // ⚠ 母站必须新建独立 beacon，不沿用任何子站 token；上线后 blackj 填入
-  cfBeaconToken: '',
+  // 站群共用同一个 beacon token（blackj 当前只建了一个 CF Web Analytics 站点，metaup.pro + 各子站共用）
+  cfBeaconToken: '81a7abda8ac14ca9a3c476e10b326eb8',
   // Google Search Console HTML 标签验证码（meta content 值，留空则不输出标签）
   // ⚠ 上线后在 GSC 注册 metaup.pro（根域名）拿到后填入
   googleSiteVerification: '',
