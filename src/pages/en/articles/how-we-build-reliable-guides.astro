@@ -1,0 +1,52 @@
+---
+import Article from '../../../layouts/Article.astro';
+---
+
+<Article
+  title="How We Build Reliable Game Guides: Data, Fact-Checking, and Hand-Drawn Maps"
+  description="Wrong data gets people killed in games. This is our complete process for sourcing, verifying, rewriting, and illustrating every single guide we publish."
+  kicker="Our Process"
+  date="2026-06-24"
+  heading="How We Build Reliable Guides"
+  lang="en"
+>
+  <section class="sec">
+    <p>Most game guides look the same: a data table copied from a wiki, a paragraph of machine-translation-flavored text, and numbers that haven’t been updated in three patches. We started MetaUp because a single wrong number has a real cost — you plan a route that doesn’t exist, you pull a creature you should never touch, or you use a strategy that was nerfed months ago.</p>
+    <p>This page explains exactly how we turn raw game information into something you can actually bet a run on.</p>
+  </section>
+
+  <section class="sec">
+    <h2>1. Two layers of information</h2>
+    <p>We deliberately separate facts from interpretation:</p>
+    <ul class="kv">
+      <li><strong>Objective data fields</strong> — role alignment, exact skill numbers, monster trigger distances, item values, map task locations. These are observable facts in the game. We pull them from in-game observation + community-maintained public sources (wikis, patch notes, data dumps).</li>
+      <li><strong>Strategic writing</strong> — “should you pull this?”, “best route order”, “when to abort”. This layer is written from scratch after we understand the system. It is not reworded wiki text.</li>
+    </ul>
+    <p class="hint">Copying someone else’s wording adds zero value and creates copyright risk. Re-explaining the same facts in clear language with real context is what actually helps players.</p>
+  </section>
+
+  <section class="sec">
+    <h2>2. The fact-checking gate</h2>
+    <p>Nothing goes live until it passes multiple verification steps:</p>
+    <ul class="kv">
+      <li><strong>Cross-source check</strong>: A critical number must match in at least two independent places. If they disagree we dig until we understand why (version difference, mode difference, or one source is simply wrong).</li>
+      <li><strong>Version tracking</strong>: Every data point is tagged with the patch it was valid for. When a new update drops we re-check affected pages instead of letting stale numbers linger.</li>
+      <li><strong>Honest uncertainty</strong>: When something is unconfirmed or community data conflicts, we label it “estimated / inferred”. We would rather say “we don’t know for sure” than publish a confident lie.</li>
+      <li><strong>Automated consistency</strong>: Structured data (role tables, monster tables) is generated from source files with tests. Human error is minimized.</li>
+    </ul>
+  </section>
+
+  <section class="sec">
+    <h2>3. Why every map is hand-drawn SVG</h2>
+    <ul class="kv">
+      <li><strong>Copyright safety</strong>: Game screenshots belong to the developers. We draw clean vector diagrams instead.</li>
+      <li><strong>Clarity first</strong>: Screenshots are full of visual noise. Our maps only show what a player actually needs — task locations, high-risk zones, good body hiding spots.</li>
+      <li><strong>Mobile friendly</strong>: SVG scales perfectly on phones without becoming a blurry mess.</li>
+    </ul>
+  </section>
+
+  <section class="sec next">
+    <h2>Next steps</h2>
+    <p>Want to learn how to evaluate any guide yourself? Read <a href="/en/articles/how-to-spot-trustworthy-guides">How to Tell If a Game Guide Is Actually Trustworthy</a>. Or jump straight into a station from the <a href="/en/#sites">Game Guides</a> section.</p>
+  </section>
+</Article>

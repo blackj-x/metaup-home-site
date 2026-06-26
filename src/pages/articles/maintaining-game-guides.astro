@@ -1,0 +1,37 @@
+---
+import Article from '../../layouts/Article.astro';
+---
+
+<Article
+  title="游戏攻略的长期维护：如何防止内容随时间腐烂"
+  description="攻略上线后不是一劳永逸。我们分享如何持续跟踪版本、修正错误、让内容保持可信的时间跨度。"
+  kicker="内容维护"
+  date="2026-06-25"
+  heading="攻略的长期维护"
+  lang="zh"
+>
+  <section class="sec">
+    <p>很多攻略站的内容上线后就再也没动过。三个月后数值变了、机制改了，用户还在按旧攻略打，结果吃大亏。</p>
+    <p>我们认为「发布」只是开始，「维护」才是核心工作。</p>
+  </section>
+
+  <section class="sec">
+    <h2>我们的维护机制</h2>
+    <ul class="kv">
+      <li><strong>版本标签化</strong>：每一条关键数据都记录对应补丁号。</li>
+      <li><strong>自动化监控</strong>：重要数据源更新时，我们的脚本会提醒受影响的页面。</li>
+      <li><strong>玩家反馈闭环</strong>：通过 contact 邮箱收到纠错后，优先级最高，24-48 小时内核查并修正。</li>
+      <li><strong>定期抽检</strong>：每隔 3-4 周，我们会随机抽查部分页面，重新验证数据。</li>
+    </ul>
+  </section>
+
+  <section class="sec">
+    <h2>为什么这很重要</h2>
+    <p>对玩家来说，一份过时的攻略比没有攻略更危险。它会给你错误的信心。</p>
+    <p>我们宁可慢一点上线，也要保证上线的内容在未来几个月内依然可靠。</p>
+  </section>
+
+  <section class="sec next">
+    <p>相关阅读：<a href="/articles/spot-reliable-game-data">怎么分辨一份游戏攻略数据靠不靠谱</a>。</p>
+  </section>
+</Article>

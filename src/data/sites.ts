@@ -21,6 +21,10 @@ export interface SubSite {
   blurb: string;
   /** 卡片上展示的内容亮点标签 */
   highlights: string[];
+  /** English version for /en/ pages (optional, falls back to Chinese if missing) */
+  taglineEn?: string;
+  blurbEn?: string;
+  highlightsEn?: string[];
 }
 
 export const sites: SubSite[] = [
@@ -37,6 +41,10 @@ export const sites: SubSite[] = [
     blurb:
       '《鹅鸭杀》是一款人多嘴杂的太空狼人杀，身份多到开局记不全。鹅鸭攻略社把鹅、鸭、中立三大阵营的每个角色技能、胜利条件、能不能带刀/投票，全部拆成一查就懂的图鉴，再配上各张地图的任务点位、刀点与藏尸区的原创示意图，外加新手入门和进阶话术专题。适合刚下载想快速记住身份的新人，也适合要规划路线、抠对局博弈的老手——开局前 30 秒来这里查一遍，上桌不慌。',
     highlights: ['全角色技能图鉴', '原创地图点位图', '新手入门 + 话术'],
+    taglineEn: 'Social Deduction · Complete Role Compendium',
+    blurbEn:
+      'Goose Goose Duck is a chaotic social deduction game in space where remembering every role feels impossible. Goose Duck Guide breaks down every Goose, Duck, and Neutral role — skills, win conditions, kill/vote eligibility — into clear, scannable entries, paired with original annotated SVG maps showing tasks, kill spots, and body hiding zones, plus beginner guides and advanced strategy. Perfect for first-timers who want to survive the first 30 seconds and veterans who want to optimize routes and mind games.',
+    highlightsEn: ['Full Role Skill Compendium', 'Original Map Diagrams', 'Beginner + Advanced Strategy'],
   },
   {
     slug: 'lethalcompany',
@@ -51,6 +59,10 @@ export const sites: SubSite[] = [
     blurb:
       '《致命公司》是几个打工人下废弃星球捡废品、躲怪、凑业绩的合作恐怖游戏，一个判断失误全队报销。致命公司攻略社把每种怪物的行为逻辑、触发条件和应对打法写成成体系的中文攻略，再覆盖各颗卫星的地形与风险、室内物品价值、终端指令、天气机制和版本解读。适合第一次进厂不知道哪个怪能惹、哪个不能碰的新人，也适合想压低死亡率、把每趟业绩拉满的老队伍——出舱前先查清楚这趟会遇到什么。',
     highlights: ['33 种怪物打法', '卫星地形 + 物品价值', '终端指令 + 版本解读'],
+    taglineEn: 'Co-op Horror · Monsters & Moon Data Archive',
+    blurbEn:
+      'Lethal Company sends teams of workers to abandoned moons to collect scrap while avoiding deadly creatures. One bad call wipes the squad. Lethal Company Guide documents the full behavior, triggers, and counters for every monster, plus moon layouts and risks, indoor scrap values, terminal commands, weather mechanics, and version notes. Ideal for new crews who don’t know what to touch and veteran teams trying to minimize deaths and max quota.',
+    highlightsEn: ['33+ Monster Strategies', 'Moon Terrain & Loot Values', 'Terminal + Version Notes'],
   },
 ];
 

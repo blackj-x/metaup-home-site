@@ -1,0 +1,62 @@
+---
+import Base from '../../layouts/Base.astro';
+
+const title = 'Player Resources - MetaUp Game Guides';
+const description =
+  'Curated, practical resources for serious co-op players. Tools, habits, and references we actually use and recommend — with our own commentary on why they’re useful.';
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'CollectionPage',
+      name: title,
+      description,
+      inLanguage: 'en',
+      url: new URL('/en/resources', Astro.site).href,
+    },
+  ],
+};
+---
+
+<Base title={title} description={description} lang="en" jsonLd={jsonLd}>
+  <div class="wrap detail">
+    <div class="crumb"><a href="/en/">Home</a> / Resources</div>
+    <h1>Player Resources</h1>
+    <p class="lead">
+      Stuff we actually use and recommend. Not an endless list of links — short notes on why each one is worth your time.
+    </p>
+
+    <div class="detail-layout-single">
+      <main>
+        <section class="sec">
+          <h2>Knowledge &amp; Tracking</h2>
+          <ul class="kv">
+            <li><strong>Obsidian (or any local markdown)</strong> — Best for building the personal knowledge system we wrote about. Free, offline, fast search, works on everything.</li>
+            <li><strong>A simple version log</strong> — One text file per game where you note the patch and what actually broke for you. Takes 30 seconds and saves hours later.</li>
+          </ul>
+        </section>
+
+        <section class="sec">
+          <h2>Cross-checking data</h2>
+          <ul class="kv">
+            <li><strong>Official patch notes + at least one community data source</strong> — Never trust a single place. We always cross at least two independent sources before publishing anything.</li>
+            <li><strong>In-game testing</strong> — The ultimate source. If you can test something yourself in 5 minutes, do it. Our articles only exist because we did the boring verification work.</li>
+          </ul>
+        </section>
+
+        <section class="sec">
+          <h2>Communication habits</h2>
+          <ul class="kv">
+            <li><strong>Short agreed callouts before the run</strong> — Decide on 5-6 words everyone understands (“bracken”, “coil”, “abort”, “quota first”). Do this once per crew.</li>
+            <li><strong>Post-run 30-second debrief</strong> — “What actually killed us?” is the highest ROI habit in co-op.</li>
+          </ul>
+        </section>
+
+        <section class="sec next">
+          <p>Want the full philosophy behind these recommendations? Start with <a href="/en/articles/how-we-build-reliable-guides">How We Build Reliable Guides</a> and <a href="/en/articles/building-personal-knowledge-system">Building Your Own Game Knowledge System</a>.</p>
+        </section>
+      </main>
+    </div>
+  </div>
+</Base>

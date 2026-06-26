@@ -1,0 +1,41 @@
+---
+import Article from '../../layouts/Article.astro';
+---
+
+<Article
+  title="为什么我们坚持原创手绘地图而不是直接截图"
+  description="游戏截图最省事，但我们选择自己画 SVG。这不是为了好看，而是版权、清晰度和长期价值三个现实考量。"
+  kicker="内容理念"
+  date="2026-06-25"
+  heading="原创手绘地图的价值"
+  lang="zh"
+>
+  <section class="sec">
+    <p>很多攻略站直接拿游戏截图当地图，又快又省心。我们为什么偏要自己画？</p>
+  </section>
+
+  <section class="sec">
+    <h2>1. 版权风险</h2>
+    <p>游戏截图的美术资产版权属于原厂。直接使用在商业化（哪怕只是放广告）的站点上，存在潜在法律风险。我们不想踩这条红线。</p>
+  </section>
+
+  <section class="sec">
+    <h2>2. 信息噪音</h2>
+    <p>截图里充满了和攻略无关的视觉干扰：UI、装饰、远景、粒子效果。玩家真正需要的只有任务点、刀点、藏尸区、风险区域。</p>
+    <p>我们画的 SVG 只保留关键信息，看起来干净、重点突出。</p>
+  </section>
+
+  <section class="sec">
+    <h2>3. 可维护性与跨版本</h2>
+    <p>游戏更新后，截图很容易过时。SVG 是矢量+代码结构，改动一个点位只要改几个坐标，成本极低。</p>
+  </section>
+
+  <section class="sec">
+    <h2>4. 移动端体验</h2>
+    <p>截图在手机上放大就会模糊或失真。SVG 在任何分辨率下都清晰，而且体积小，加载快。</p>
+  </section>
+
+  <section class="sec next">
+    <p>想了解我们完整的制作流程，可以阅读 <a href="/articles/how-we-make-guides">我们怎么做游戏攻略</a>。</p>
+  </section>
+</Article>

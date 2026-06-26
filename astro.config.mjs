@@ -6,5 +6,6 @@ export default defineConfig({
   site: 'https://metaup.pro',
   // 强制绑 127.0.0.1：本机代理工具的 fake-ip DNS 会把 localhost 解析到
   // 198.18.x.x 不可绑定段，导致 astro dev 报 EADDRNOTAVAIL
-  server: { host: '127.0.0.1' },
+  // 端口改为 14321（原 4321 被占用）
+  server: { host: '127.0.0.1', port: 14321 },
 });

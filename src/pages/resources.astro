@@ -1,0 +1,62 @@
+---
+import Base from '../layouts/Base.astro';
+
+const title = '实用资源 - MetaUp 游戏攻略站群';
+const description =
+  '给认真玩联机的玩家准备的实用资源。我们真正会用、会推荐的东西，并附上我们自己的点评。';
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'CollectionPage',
+      name: title,
+      description,
+      inLanguage: 'zh-CN',
+      url: new URL('/resources', Astro.site).href,
+    },
+  ],
+};
+---
+
+<Base title={title} description={description} lang="zh" jsonLd={jsonLd}>
+  <div class="wrap detail">
+    <div class="crumb"><a href="/">首页</a> / 实用资源</div>
+    <h1>实用资源</h1>
+    <p class="lead">
+      我们真正会用、会推荐的东西。不是一堆乱七八糟的链接，而是简短说明「为什么这个值得用」。
+    </p>
+
+    <div class="detail-layout-single">
+      <main>
+        <section class="sec">
+          <h2>知识与记录</h2>
+          <ul class="kv">
+            <li><strong>Obsidian（或任何本地 Markdown）</strong> —— 建立我们文章里说的「个人知识系统」的最佳工具。免费、离线、搜索快，跨平台都行。</li>
+            <li><strong>一个简单的版本记录文件</strong> —— 每个游戏一个文本文件，每次更新后记一条「这次真正影响我的变化」。30 秒的事，后续能省好几个小时。</li>
+          </ul>
+        </section>
+
+        <section class="sec">
+          <h2>交叉验证数据</h2>
+          <ul class="kv">
+            <li><strong>官方更新说明 + 至少一个社区数据源</strong> —— 永远不要只信一个地方。我们自己发内容前至少会交叉验证两个独立来源。</li>
+            <li><strong>游戏内自己测试</strong> —— 最终权威来源。如果你能在 5 分钟内亲自验证，就去验证。我们所有文章都是因为自己做了这些枯燥的核对工作才存在的。</li>
+          </ul>
+        </section>
+
+        <section class="sec">
+          <h2>沟通习惯</h2>
+          <ul class="kv">
+            <li><strong>开局前定好 5-6 个简短代号</strong> —— 比如「黑影」「卷须」「撤退」「先配额」。全队统一一次就够了。</li>
+            <li><strong>每把结束后 30 秒复盘</strong> —— 「这次到底是哪里翻车了？」是联机游戏里性价比最高的习惯。</li>
+          </ul>
+        </section>
+
+        <section class="sec next">
+          <p>想了解背后的完整思路？推荐阅读 <a href="/articles/how-we-make-guides">我们怎么做游戏攻略</a> 和 <a href="/articles/reading-patch-notes">如何真正读懂游戏更新说明</a>。</p>
+        </section>
+      </main>
+    </div>
+  </div>
+</Base>

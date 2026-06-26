@@ -1,0 +1,68 @@
+---
+import Base from '../../layouts/Base.astro';
+import { liveSites } from '../../data/sites';
+import { articles } from '../../data/en/articles';
+
+const title = 'About MetaUp Game Guides';
+const description =
+  'MetaUp (metaup.pro) is an independent network of game guide stations. We research, verify, and rewrite guides for each game in its own dedicated space, with original diagrams. Not affiliated with any game developer.';
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'AboutPage',
+      name: title,
+      description,
+      inLanguage: 'en',
+      url: new URL('/en/about', Astro.site).href,
+    },
+    {
+      '@type': 'Organization',
+      name: 'MetaUp Game Guides',
+      url: new URL('/en/', Astro.site).href,
+    },
+  ],
+};
+---
+
+<Base title={title} description={description} active="about" lang="en" jsonLd={jsonLd}>
+  <div class="wrap detail">
+    <div class="crumb"><a href="/en/">Home</a> / About</div>
+    <h1>About <span class="em">MetaUp</span></h1>
+    <p class="lead">
+      MetaUp is an independent game guide network. Instead of one giant everything-site, we build a dedicated station for each game. We take the messy reality of roles, monsters, maps, and systems, research them properly, verify the numbers, rewrite them clearly, and draw our own diagrams. This page explains who we are and how we work.
+    </p>
+
+    <div class="detail-layout-single">
+      <main>
+        <section class="sec">
+          <h2>What is MetaUp?</h2>
+          <p>It is both the network hub and a content site in its own right. On the mother site you can pick which game station to visit, read our editorials about guide quality and co-op skills, and understand our standards. Current live stations:</p>
+          <ul class="kv">
+            {liveSites.map((s) => (
+              <li><strong>{s.name}</strong> (<a href={s.url} target="_blank" rel="noopener">{s.url.replace('https://', '')}</a>): dedicated guides for {s.gameEn}.</li>
+            ))}
+            <li><strong>Editorials</strong>: {articles.length}+ original English pieces + full Chinese editorials at the root — methodology, player judgment tools, and cross-game insights. Bilingual support on the mother site.</li>
+          </ul>
+        </section>
+
+        <section class="sec">
+          <h2>How the content is created</h2>
+          <p>All our material is created from publicly observable game data + community sources. We do not copy-paste or machine-translate. Objective facts are cross-checked. Strategic advice is written from understanding the systems. Maps are drawn as clean original SVGs.</p>
+          <p>Full details: read our editorial <a href="/en/articles/how-we-build-reliable-guides">How We Build Reliable Game Guides</a>.</p>
+        </section>
+
+        <section class="sec">
+          <h2>Who it’s for</h2>
+          <p>Players who want to check something quickly before a run and actually be able to trust the answer — whether you’re a new player trying not to die in the first five minutes or a veteran optimizing routes and quota.</p>
+        </section>
+
+        <section class="sec">
+          <h2>Independent and non-official</h2>
+          <p>Game names, assets, and trademarks belong to their respective developers. MetaUp and its stations are fan-made resources. We are not affiliated with or endorsed by any game publisher. If you believe any content needs correction or removal, please use the contact page.</p>
+        </section>
+      </main>
+    </div>
+  </div>
+</Base>

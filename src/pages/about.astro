@@ -32,7 +32,7 @@ const jsonLd = {
   ],
 };
 ---
-<Base title={title} description={description} active="about" jsonLd={jsonLd}>
+<Base title={title} description={description} active="about" lang="zh" jsonLd={jsonLd}>
   <div class="wrap detail">
     <div class="crumb"><a href="/">首页</a> / 关于站群</div>
     <h1>关于<span class="em">站群</span></h1>
@@ -47,7 +47,7 @@ const jsonLd = {
             {liveSites.map((s) => (
               <li><strong>{s.name}</strong>(<a href={s.url} rel="noopener" target="_blank">{s.url.replace('https://', '')}</a>):{s.game} · {s.gameEn} 的中文攻略专站。</li>
             ))}
-            <li><strong>母站编辑精选</strong>:{articles.length} 篇只在 metaup.pro 存在的原创文,讲方法论、给玩家判断工具、做跨游戏盘点。</li>
+            <li><strong>母站编辑精选</strong>：中文原创文 + 英文分区（/en/articles）共多篇独立内容，讲方法论、跨游戏技能与数据可信度判断。</li>
           </ul>
           <p class="hint">站群会随我们做厚做散的节奏持续增加新游戏专站,而不是用一套模板批量铺站。</p>
         </section>

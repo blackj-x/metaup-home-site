@@ -1,10 +1,10 @@
 ---
-import Base from '../../layouts/Base.astro';
-import { articles } from '../../data/articles';
+import Base from '../../../layouts/Base.astro';
+import { articles } from '../../../data/en/articles';
 
-const title = '编辑精选 - MetaUp 游戏攻略站群';
+const title = 'Editorials - MetaUp Game Guides';
 const description =
-  'MetaUp 母站独有的原创编辑文:讲清我们怎么做游戏攻略数据、如何做事实校验、怎么分辨一份攻略数据靠不靠谱,以及适合新手入坑的联机合作游戏盘点。';
+  'Original English writing from the MetaUp team: how we research and verify game data, practical advice for spotting good guides, co-op communication fundamentals, and more. Content you won’t find on the individual game stations.';
 
 const jsonLd = {
   '@context': 'https://schema.org',
@@ -13,33 +13,36 @@ const jsonLd = {
       '@type': 'CollectionPage',
       name: title,
       description,
-      inLanguage: 'zh-CN',
-      url: new URL('/articles', Astro.site).href,
+      inLanguage: 'en',
+      url: new URL('/en/articles', Astro.site).href,
     },
     {
       '@type': 'BreadcrumbList',
       itemListElement: [
-        { '@type': 'ListItem', position: 1, name: '首页', item: new URL('/', Astro.site).href },
-        { '@type': 'ListItem', position: 2, name: '编辑精选' },
+        { '@type': 'ListItem', position: 1, name: 'Home', item: new URL('/en/', Astro.site).href },
+        { '@type': 'ListItem', position: 2, name: 'Editorials' },
       ],
     },
   ],
 };
 ---
-<Base title={title} description={description} active="articles" lang="zh" jsonLd={jsonLd}>
+
+<Base title={title} description={description} active="articles" lang="en" jsonLd={jsonLd}>
   <div class="wrap detail">
-    <div class="crumb"><a href="/">首页</a> / 编辑精选</div>
-    <h1>编辑<span class="em">精选</span></h1>
-    <p class="lead">这些文章只在母站存在,是各游戏专站里没有的内容:讲我们做攻略的方法、给玩家的判断工具,以及跨游戏的原创盘点。不灌水、不堆 SEO 关键词,只写真有信息量的东西。英文原创编辑文请访问 <a href="/en/articles">/en/articles</a>。</p>
+    <div class="crumb"><a href="/en/">Home</a> / Editorials</div>
+    <h1>Editorials</h1>
+    <p class="lead">
+      These articles live only on the mother site. They cover how we work, player skills that apply across games, and practical ways to judge whether any guide is worth trusting. No filler. No SEO keyword stuffing.
+    </p>
 
     <ul class="art-grid">
       {articles.map((a) => (
         <li>
-          <a href={`/articles/${a.slug}`}>
+          <a href={`/en/articles/${a.slug}`}>
             <span class="k">{a.kicker}</span>
             <h2>{a.title}</h2>
             <p>{a.excerpt}</p>
-            <span class="meta">{a.date} · 原创编辑文</span>
+            <span class="meta">{a.date} · Original editorial</span>
           </a>
         </li>
       ))}

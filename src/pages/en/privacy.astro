@@ -1,0 +1,65 @@
+---
+import Base from '../../layouts/Base.astro';
+import { SITE } from '../../data/site';
+
+const title = 'Privacy Policy - MetaUp Game Guides';
+const description =
+  'How MetaUp uses Google AdSense (including personalized ads and how to opt out), Cloudflare Web Analytics, and handles contact emails. We do not actively collect personal information.';
+
+const updated = '2026-06-24';
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    { '@type': 'Article', headline: title, description, inLanguage: 'en' },
+  ],
+};
+---
+
+<Base title={title} description={description} lang="en" jsonLd={jsonLd}>
+  <div class="wrap detail">
+    <div class="crumb"><a href="/en/">Home</a> / Privacy</div>
+    <h1>Privacy Policy</h1>
+    <p class="lead">Last updated: {updated}. This page explains what information is processed when you visit metaup.pro and our game guide stations, and what choices you have.</p>
+
+    <div class="detail-layout-single">
+      <main>
+        <section class="sec">
+          <h2>Summary</h2>
+          <p>We are a free game guide resource. We do not require accounts or logins and do not actively collect personal identifiers. We use Google AdSense for advertising and Cloudflare Web Analytics for anonymous traffic stats.</p>
+        </section>
+
+        <section class="sec">
+          <h2>Advertising (Google AdSense)</h2>
+          <p>Google and its partners may use cookies and similar identifiers to serve ads based on your past activity. This site does not directly read or store those cookies.</p>
+          <p><strong>How to turn off personalized ads:</strong></p>
+          <ul class="kv">
+            <li>Google Ads Settings: <a href="https://www.google.com/settings/ads" target="_blank" rel="noopener">https://www.google.com/settings/ads</a></li>
+            <li>Opt out of third-party interest-based advertising: <a href="https://www.aboutads.info/choices/" target="_blank" rel="noopener">www.aboutads.info/choices/</a></li>
+          </ul>
+          <p class="hint">You will still see ads, they will simply be less relevant.</p>
+        </section>
+
+        <section class="sec">
+          <h2>Analytics (Cloudflare Web Analytics)</h2>
+          <p>We use Cloudflare Web Analytics. It does not use cookies, does not store identifiers on your device, and does not track you across sites. It only provides aggregated, anonymous page view and device type statistics.</p>
+        </section>
+
+        <section class="sec">
+          <h2>Contact emails</h2>
+          <p>If you email support@metaup.pro, we use the content only to reply to you. We do not add you to mailing lists or share your address.</p>
+        </section>
+
+        <section class="sec">
+          <h2>Third-party links</h2>
+          <p>Our stations and articles link to external wikis and resources. They have their own privacy policies.</p>
+        </section>
+
+        <section class="sec">
+          <h2>Children</h2>
+          <p>Our content is aimed at general game players and is not directed at children under 13. We do not knowingly collect personal information from children.</p>
+        </section>
+      </main>
+    </div>
+  </div>
+</Base>

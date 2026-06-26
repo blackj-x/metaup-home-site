@@ -1,69 +1,62 @@
 ---
-import Base from '../layouts/Base.astro';
-import { sites, liveSites } from '../data/sites';
-import { articles } from '../data/articles';
+import Base from '../../layouts/Base.astro';
+import { sites, liveSites } from '../../data/sites';
+import { articles } from '../../data/en/articles';
 
-const title = 'MetaUp 游戏攻略站群 - 做厚、做准、原创的游戏攻略数据库';
+const title = 'MetaUp Game Guides - Original, Verified, High-Quality Game Strategy Hub';
 const description =
-  'MetaUp（metaup.pro）是一个独立的游戏攻略站群门户:每款游戏一个专站,把繁杂的角色、怪物、地图、机制整理、核对、改写成可信的原创中英双语攻略,配手绘 SVG 地图。覆盖《鹅鸭杀》《致命公司》,持续更新。英文内容位于 /en/。';
+  'MetaUp (metaup.pro) is an independent game guide station network. For each game we build a dedicated station with thoroughly researched, fact-checked, original Chinese and English guides — complete with hand-drawn SVG maps. Currently covering Goose Goose Duck and Lethal Company, with regular updates. Bilingual content at the root domain.';
 
-// 站群动态:手写 + 取真实子站数,体现「活着、在更新」
-// 这部分会作为后续持续更新的重点，会定期补充新条目
 const updates = [
   {
     date: '2026-06-25',
-    site: 'MetaUp 母站',
-    text: '新增 3 篇原创编辑文 + FAQ 页面。继续扩充母站内容厚度与可信度信号。',
+    site: 'MetaUp',
+    text: 'Added 3 new original English editorials + new FAQ page. Mother site content and bilingual coverage continues to expand.',
   },
   {
     date: '2026-06-24',
-    site: 'MetaUp 母站',
-    text: '新增中英双语「实用资源」页 + 3 篇新原创编辑文（读补丁说明、建立个人知识系统等）。英文分区现已有 6 篇独立原创文章。',
+    site: 'MetaUp',
+    text: 'Added 6 original English editorials total + new /resources page. New pieces cover patch note reading, building lasting personal knowledge systems, and more.',
   },
   {
     date: '2026-06-22',
-    site: 'MetaUp 母站',
-    text: '优化现有编辑文标题与内链，提升可搜索性与用户停留。',
+    site: 'MetaUp',
+    text: 'Refined article titles, meta descriptions and internal linking for better discoverability.',
   },
   {
-    date: '2026-06-18',
-    site: '鹅鸭攻略社',
-    text: '新增部分角色细节补充与地图标注修正，根据玩家反馈更新。',
+    date: '2026-06-17',
+    site: 'Goose Duck Guide',
+    text: 'Minor role detail updates and map annotation fixes based on community reports.',
   },
   {
     date: '2026-06-16',
-    site: '站群',
-    text: '上线 MetaUp 母站门户,统一站群入口与编辑精选;明确「每款游戏独立成站、同一套准确性与原创性标准」的定位。',
+    site: 'Lethal Company Guide',
+    text: 'Lethal Company station completed: 33+ monsters, moon layouts, scrap values, terminal commands, weather, and version tracking — all verified through our fact-checking pipeline.',
   },
   {
-    date: '2026-06-14',
-    site: '致命公司攻略社',
-    text: '更新部分怪物应对策略与新玩家常见问题解答。',
+    date: '2026-06-13',
+    site: 'Lethal Company Guide',
+    text: 'Updated several monster counters and added new player FAQ section based on feedback.',
   },
   {
-    date: '2026-06-12',
-    site: '致命公司攻略社',
-    text: '补充天气机制与部分卫星变体描述，修正多处数值误差。',
-  },
-  {
-    date: '2026-06-08',
-    site: '致命公司攻略社',
-    text: '《致命公司》攻略站建成:33 种怪物打法 + 卫星地形 + 物品价值 + 终端指令 + 版本解读,数据管线全程事实校验。',
+    date: '2026-06-11',
+    site: 'Lethal Company Guide',
+    text: 'Added weather mechanics and several moon variant descriptions. Fixed multiple value errors reported by players.',
   },
   {
     date: '2026-06-06',
-    site: '鹅鸭攻略社',
-    text: '《鹅鸭杀》全角色身份图鉴 + 原创 SVG 地图点位上线,作为站群首个验证站跑通「JSON 唯一数据源 → 自动生成页面」的生产线。',
+    site: 'Goose Duck Guide',
+    text: 'Goose Goose Duck full role compendium + original SVG maps went live as the first production station using structured data → auto-generated pages.',
   },
   {
-    date: '2026-05-30',
-    site: 'MetaUp 母站',
-    text: '开始筹备母站内容建设，确定「每游戏一站 + 原创编辑文」的基本方向。',
+    date: '2026-05-29',
+    site: 'MetaUp',
+    text: 'Began mother site content planning. Decided on the “one dedicated station per game + original editorials” approach.',
   },
   {
     date: '2026-05-25',
-    site: 'MetaUp 母站',
-    text: '规划双语内容结构与 E-E-A-T 文章系列。',
+    site: 'MetaUp',
+    text: 'Initial bilingual structure planning and E-E-A-T editorial series outline.',
   },
 ];
 
@@ -72,34 +65,33 @@ const jsonLd = {
   '@type': 'CollectionPage',
   name: title,
   description,
-  inLanguage: 'zh-CN',
-  url: new URL('/', Astro.site).href,
+  inLanguage: 'en',
+  url: new URL('/en/', Astro.site).href,
   hasPart: liveSites.map((s) => ({ '@type': 'WebSite', name: s.name, url: s.url })),
 };
 ---
-<Base title={title} description={description} active="home" lang="zh" jsonLd={jsonLd}>
+
+<Base title={title} description={description} active="home" lang="en" jsonLd={jsonLd}>
   <div class="wrap">
     <section class="hero">
       <div class="hero-copy">
-        <div class="kicker">游戏攻略站群门户 · metaup.pro</div>
-        <h1>把攻略做<span class="em">厚、准、原创</span></h1>
+        <div class="kicker">Independent Game Guide Network • metaup.pro</div>
+        <h1>Guides that are <span class="em">thick, accurate, and original</span></h1>
         <p class="sub">
-          MetaUp 不是又一个抄来抄去的 wiki 镜像。我们为每款游戏单独建一个专站,把它繁杂的角色、怪物、地图和机制,重新整理、逐项核对、用中英双语独立成文,再配上自己手画的 SVG 地图——让你开局前一查就懂,而不是被一屏过期数值和搬运内容劝退。母站现已支持英文分区（/en/）。这一页是站群的总入口:挑游戏、看我们怎么做攻略、读编辑精选。
+          MetaUp is not another wiki mirror or content farm. For every game we create a dedicated station. We take complex roles, monsters, maps, and mechanics, research them thoroughly, verify every data point, rewrite in clear English (and Chinese), and draw our own SVG maps. So you can check one thing before a run and actually trust it.
         </p>
         <div class="hero-actions">
-          <a class="primary-btn" href="#sites">进入攻略站 ↓</a>
-          <a class="ghost-btn" href="/articles">看我们怎么做的</a>
-          <a class="ghost-btn" href="/resources">实用资源</a>
-          <a class="ghost-btn" href="/en/">English editorials &amp; hub →</a>
+          <a class="primary-btn" href="#sites">Browse Game Stations ↓</a>
+          <a class="ghost-btn" href="/en/articles">Read our editorials</a>
+          <a class="ghost-btn" href="/en/resources">Practical resources</a>
         </div>
       </div>
-      <aside class="hero-stats" aria-label="站群概况">
+      <aside class="hero-stats" aria-label="Network overview">
         <div class="stat-card">
-          <div class="stat-row"><b>{liveSites.length}</b><span>已上线专站</span></div>
-          <div class="stat-row"><b>{articles.length}</b><span>中文原创编辑文</span></div>
-          <div class="stat-row"><b>EN</b><span>英文编辑文已上线</span></div>
-          <div class="stat-row"><b>SVG</b><span>地图全部原创手绘</span></div>
-          <div class="stat-tag">每篇攻略经事实校验闸 · 查不到的数值标「估计/推断」</div>
+          <div class="stat-row"><b>{liveSites.length}</b><span>Live dedicated stations</span></div>
+          <div class="stat-row"><b>{articles.length}</b><span>Original English editorials</span></div>
+          <div class="stat-row"><b>SVG</b><span>All maps hand-drawn by us</span></div>
+          <div class="stat-tag">Every guide passes a real fact-checking process • Uncertain numbers are clearly labeled</div>
         </div>
       </aside>
     </section>
@@ -107,33 +99,38 @@ const jsonLd = {
     <section class="sites" id="sites">
       <div class="section-head">
         <div>
-          <h2>攻略站群</h2>
-          <p>每款游戏一个独立专站。点卡片进入对应站点。</p>
+          <h2>Our Game Guide Stations</h2>
+          <p>One focused station per game. Click a card to enter.</p>
         </div>
       </div>
       <div class="site-grid">
-        {sites.map((s) => (
-          <a
-            class="site-card"
-            href={s.url}
-            style={`--accent:${s.accent}`}
-            rel={s.status === 'live' ? 'noopener' : 'nofollow noopener'}
-            target="_blank"
-          >
-            <div class="site-top">
-              <div class="site-icon">{s.icon}</div>
-              <span class={`status ${s.status}`}>{s.status === 'live' ? '已上线' : '建设中'}</span>
-            </div>
-            <h3>{s.name}</h3>
-            <div class="site-game">{s.game} · {s.gameEn}</div>
-            <p class="site-tag">{s.tagline}</p>
-            <p class="site-blurb">{s.blurb}</p>
-            <div class="site-hl">
-              {s.highlights.map((h) => <span>{h}</span>)}
-            </div>
-            <div class="site-enter">进入 {s.url.replace('https://', '')} →</div>
-          </a>
-        ))}
+        {sites.map((s) => {
+          const blurb = s.blurbEn || s.blurb;
+          const tagline = s.taglineEn || s.tagline;
+          const hl = s.highlightsEn || s.highlights;
+          return (
+            <a
+              class="site-card"
+              href={s.url}
+              style={`--accent:${s.accent}`}
+              rel={s.status === 'live' ? 'noopener' : 'nofollow noopener'}
+              target="_blank"
+            >
+              <div class="site-top">
+                <div class="site-icon">{s.icon}</div>
+                <span class={`status ${s.status}`}>{s.status === 'live' ? 'Live' : 'Building'}</span>
+              </div>
+              <h3>{s.name}</h3>
+              <div class="site-game">{s.game} · {s.gameEn}</div>
+              <p class="site-tag">{tagline}</p>
+              <p class="site-blurb">{blurb}</p>
+              <div class="site-hl">
+                {hl.map((h) => <span>{h}</span>)}
+              </div>
+              <div class="site-enter">Enter {s.url.replace('https://', '')} →</div>
+            </a>
+          );
+        })}
       </div>
     </section>
 
@@ -141,8 +138,8 @@ const jsonLd = {
       <div class="feed">
         <div class="section-head">
           <div>
-            <h2>站群动态</h2>
-            <p>最近更新了哪些站、做了什么。</p>
+            <h2>Network Updates</h2>
+            <p>What we’ve shipped and improved recently.</p>
           </div>
         </div>
         <ul class="timeline">
@@ -158,15 +155,15 @@ const jsonLd = {
       <div class="editorial">
         <div class="section-head">
           <div>
-            <h2>编辑精选</h2>
-            <p>母站独有的原创文（中文）。更多实用资源见 <a href="/resources">实用资源</a>，英文版见 <a href="/en/articles">English editorials</a>。</p>
+            <h2>Editorials</h2>
+            <p>Original writing only available here on the mother site. Also see <a href="/en/resources">practical resources</a>.</p>
           </div>
-          <a href="/articles">全部 →</a>
+          <a href="/en/articles">All editorials →</a>
         </div>
         <ul class="art-list">
           {articles.map((a) => (
             <li>
-              <a href={`/articles/${a.slug}`}>
+              <a href={`/en/articles/${a.slug}`}>
                 <span class="art-kicker">{a.kicker}</span>
                 <strong>{a.title}</strong>
                 <span class="art-ex">{a.excerpt}</span>

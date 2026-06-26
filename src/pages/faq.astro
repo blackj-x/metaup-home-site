@@ -1,0 +1,64 @@
+---
+import Base from '../layouts/Base.astro';
+
+const title = '常见问题 - MetaUp 游戏攻略站群';
+const description = '关于 MetaUp 游戏攻略站群的常见问题：内容来源、准确性维护、如何反馈、版权声明等。';
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'FAQPage',
+      name: title,
+      inLanguage: 'zh-CN',
+      url: new URL('/faq', Astro.site).href,
+    },
+  ],
+};
+---
+
+<Base title={title} description={description} lang="zh" jsonLd={jsonLd}>
+  <div class="wrap detail">
+    <div class="crumb"><a href="/">首页</a> / 常见问题</div>
+    <h1>常见问题</h1>
+
+    <div class="detail-layout-single">
+      <main>
+        <section class="sec">
+          <h2>MetaUp 是什么？</h2>
+          <p>我们是一个独立的游戏攻略站群。为每款游戏单独建立一个专注的站点，把复杂的内容整理、核对后用清晰的方式呈现。目前覆盖《鹅鸭杀》和《致命公司》，未来会持续增加。</p>
+        </section>
+
+        <section class="sec">
+          <h2>攻略是官方的吗？</h2>
+          <p>不是。我们与任何游戏官方或发行方没有从属或合作关系。所有内容均基于公开游戏数据独立整理编写。</p>
+        </section>
+
+        <section class="sec">
+          <h2>你们如何保证数据准确？</h2>
+          <p>每条关键数据至少经过交叉验证。我们会标注版本，并在游戏更新后主动复查。同时欢迎玩家通过邮箱报告错误，我们会优先处理。</p>
+        </section>
+
+        <section class="sec">
+          <h2>我发现数据错了，怎么反馈？</h2>
+          <p>请发送邮件到 <a href="mailto:support@metaup.pro">support@metaup.pro</a>，尽量说明具体站点、页面和正确信息。我们通常会在几天内回复。</p>
+        </section>
+
+        <section class="sec">
+          <h2>为什么每个游戏都要单独建站？</h2>
+          <p>不同游戏的核心体验差异很大。用同一套模板硬套只会产生低质量内容。我们宁可慢一点，把每个站真正做厚。</p>
+        </section>
+
+        <section class="sec">
+          <h2>地图为什么都是自己画的？</h2>
+          <p>一方面避免版权问题，另一方面游戏截图噪音太多。我们只保留玩家真正需要的信息（任务点、风险区域等），并且 SVG 在手机上也能清晰显示。</p>
+        </section>
+
+        <section class="sec">
+          <h2>你们会收集我的数据吗？</h2>
+          <p>本站不要求登录，也不会主动收集个人信息。详细说明见 <a href="/privacy">隐私政策</a>。</p>
+        </section>
+      </main>
+    </div>
+  </div>
+</Base>

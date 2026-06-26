@@ -1,0 +1,64 @@
+---
+import Base from '../../layouts/Base.astro';
+
+const title = 'FAQ - MetaUp Game Guides';
+const description = 'Frequently asked questions about MetaUp: content sources, accuracy, how to report issues, copyright, and more.';
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'FAQPage',
+      name: title,
+      inLanguage: 'en',
+      url: new URL('/en/faq', Astro.site).href,
+    },
+  ],
+};
+---
+
+<Base title={title} description={description} lang="en" jsonLd={jsonLd}>
+  <div class="wrap detail">
+    <div class="crumb"><a href="/en/">Home</a> / FAQ</div>
+    <h1>FAQ</h1>
+
+    <div class="detail-layout-single">
+      <main>
+        <section class="sec">
+          <h2>What is MetaUp?</h2>
+          <p>An independent network of focused game guide stations. Instead of one giant wiki, we build a dedicated site for each game and try to make the information clear and trustworthy.</p>
+        </section>
+
+        <section class="sec">
+          <h2>Are the guides official?</h2>
+          <p>No. We are not affiliated with any game developer or publisher. All content is researched and written independently from publicly available game data.</p>
+        </section>
+
+        <section class="sec">
+          <h2>How do you keep the information accurate?</h2>
+          <p>Critical data is cross-checked from multiple sources. We tag every important value with its patch version and actively review pages after major updates. Player reports are also treated as high priority.</p>
+        </section>
+
+        <section class="sec">
+          <h2>How can I report an error or suggest content?</h2>
+          <p>Email us at <a href="mailto:support@metaup.pro">support@metaup.pro</a>. Please include the station name and specific page or item when reporting issues.</p>
+        </section>
+
+        <section class="sec">
+          <h2>Why does every game get its own station?</h2>
+          <p>Because every game has very different core mechanics. Using one generic template across many titles usually produces shallow content. We prefer to go slower and do each game properly.</p>
+        </section>
+
+        <section class="sec">
+          <h2>Why do you draw your own maps instead of using screenshots?</h2>
+          <p>Screenshots contain a lot of visual noise and carry copyright risk. Our clean SVGs only show what players actually need and remain clear on mobile.</p>
+        </section>
+
+        <section class="sec">
+          <h2>Do you collect my personal data?</h2>
+          <p>We do not require accounts and do not actively collect personal information. See our <a href="/en/privacy">Privacy Policy</a> for details.</p>
+        </section>
+      </main>
+    </div>
+  </div>
+</Base>

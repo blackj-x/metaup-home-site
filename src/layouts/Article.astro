@@ -8,10 +8,12 @@ export interface Props {
   date: string;
   /** 用于面包屑与标题展示的短标题 */
   heading: string;
+  lang?: 'zh' | 'en';
 }
 
-const { title, description, kicker, date, heading } = Astro.props;
-const pageTitle = `${title} - MetaUp 游戏攻略站群`;
+const { title, description, kicker, date, heading, lang = 'zh' } = Astro.props;
+const isEn = lang === 'en';
+const pageTitle = isEn ? `${title} - MetaUp Game Guides` : `${title} - MetaUp 游戏攻略站群`;
 
 const jsonLd = {
   '@context': 'https://schema.org',
@@ -20,27 +22,36 @@ const jsonLd = {
       '@type': 'Article',
       headline: title,
       description,
-      inLanguage: 'zh-CN',
+      inLanguage: isEn ? 'en' : 'zh-CN',
       datePublished: date,
       dateModified: date,
-      author: { '@type': 'Organization', name: 'MetaUp 游戏攻略站群' },
-      publisher: { '@type': 'Organization', name: 'MetaUp 游戏攻略站群' },
+      author: { '@type': 'Organization', name: isEn ? 'MetaUp Game Guides' : 'MetaUp 游戏攻略站群' },
+      publisher: { '@type': 'Organization', name: isEn ? 'MetaUp Game Guides' : 'MetaUp 游戏攻略站群' },
       url: new URL(Astro.url.pathname, Astro.site).href,
     },
     {
       '@type': 'BreadcrumbList',
-      itemListElement: [
-        { '@type': 'ListItem', position: 1, name: '首页', item: new URL('/', Astro.site).href },
-        { '@type': 'ListItem', position: 2, name: '编辑精选', item: new URL('/articles', Astro.site).href },
-        { '@type': 'ListItem', position: 3, name: heading },
-      ],
+      itemListElement: isEn
+        ? [
+            { '@type': 'ListItem', position: 1, name: 'Home', item: new URL('/en/', Astro.site).href },
+            { '@type': 'ListItem', position: 2, name: 'Editorials', item: new URL('/en/articles', Astro.site).href },
+            { '@type': 'ListItem', position: 3, name: heading },
+          ]
+        : [
+            { '@type': 'ListItem', position: 1, name: '首页', item: new URL('/', Astro.site).href },
+            { '@type': 'ListItem', position: 2, name: '编辑精选', item: new URL('/articles', Astro.site).href },
+            { '@type': 'ListItem', position: 3, name: heading },
+          ],
     },
   ],
 };
 ---
-<Base title={pageTitle} description={description} active="articles" jsonLd={jsonLd}>
+<Base title={pageTitle} description={description} active="articles" lang={lang} jsonLd={jsonLd}>
   <div class="wrap detail">
-    <div class="crumb"><a href="/">首页</a> / <a href="/articles">编辑精选</a> / {heading}</div>
+    <div class="crumb">
+      <a href={isEn ? '/en/' : '/'}>{isEn ? 'Home' : '首页'}</a> / 
+      <a href={isEn ? '/en/articles' : '/articles'}>{isEn ? 'Editorials' : '编辑精选'}</a> / {heading}
+    </div>
     <div class="art-kicker">{kicker} · {date}</div>
     <h1>{title}</h1>
     <article class="detail-layout-single">

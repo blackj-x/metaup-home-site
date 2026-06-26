@@ -1,0 +1,54 @@
+---
+import Base from '../../layouts/Base.astro';
+
+const title = 'Contact - MetaUp Game Guides';
+const description = 'Reach the MetaUp team. Report data errors, suggest content, ask about cooperation, or raise copyright questions. Email: support@metaup.pro';
+
+const CONTACT_EMAIL = 'support@metaup.pro';
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'ContactPage',
+      name: title,
+      description,
+      inLanguage: 'en',
+      url: new URL('/en/contact', Astro.site).href,
+    },
+  ],
+};
+---
+
+<Base title={title} description={description} lang="en" jsonLd={jsonLd}>
+  <div class="wrap detail">
+    <div class="crumb"><a href="/en/">Home</a> / Contact</div>
+    <h1>Contact Us</h1>
+    <p class="lead">We’re a small independent team. Whether you found incorrect data, have a suggestion for a new station or article, or need to discuss copyright or cooperation, please email us.</p>
+
+    <div class="detail-layout-single">
+      <main>
+        <section class="sec">
+          <h2>Email</h2>
+          <p class="email"><a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a></p>
+          <p class="hint">We usually reply within a few business days. Please mention the specific station and page (or role/monster/map) when reporting data issues.</p>
+        </section>
+
+        <section class="sec">
+          <h2>What to contact us about</h2>
+          <ul class="kv">
+            <li><strong>Data corrections</strong> — a number, behavior, or route description doesn’t match what you see in game.</li>
+            <li><strong>Content suggestions</strong> — you want more depth on something, or a new game station.</li>
+            <li><strong>Copyright</strong> — you represent rights holders and have a concern.</li>
+            <li><strong>Other</strong> — cooperation or partnership ideas.</li>
+          </ul>
+        </section>
+
+        <section class="sec">
+          <h2>Privacy note</h2>
+          <p>Anything you send us is used only to respond to your message. We don’t sell emails or use them for marketing. See our <a href="/en/privacy">Privacy page</a>.</p>
+        </section>
+      </main>
+    </div>
+  </div>
+</Base>
