@@ -39,6 +39,10 @@
 6. 内部链接、sitemap 更新
 7. 端口和配置调整
 8. FAQ + Resources 页面（提升内容厚度）
+9. Week 2 技术 SEO：
+   - sitemap 所有 canonical URL 统一添加尾斜杠（https://metaup.pro/、/articles/ 等）
+   - Base.astro 输出 hreflang="zh" / "en" + hreflang="x-default"（x-default 指向中文主版本）
+   - Article schema 补充 image + publisher.logo（使用 og-default.png）
 
 ## 构建状态
 - `npm run build` 成功，产出 dist/（静态资产）
@@ -70,7 +74,9 @@
 ## 版本信息
 - 当前分支：main
 - Baseline 日期：2026-06-26
-- 提交信息：见 git log（本次统一提交所有 SEO + 内容增强变更）
+- 最新提交：chore(seo): Week 2 technical - sitemap trailing slash for canonical, Base hreflang + x-default, Article schema image + logo
+- 基线包含：双语结构 + 原创内容 + 站群动态 + SEO-PLAN + 本次技术优化
+- 后续变更：请参考 SEO-PLAN.md 每周小步执行，并在本文件追加更新记录
 
 ---
 
