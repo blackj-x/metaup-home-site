@@ -15,7 +15,11 @@ export function GET({ site }) {
   const allPaths = [...zhStatic, ...zhArticlePaths, ...enStatic, ...enArticlePaths];
 
   const urls = allPaths
-    .map((p) => `  <url><loc>${base}${p}</loc></url>`)
+    .map((p) => {
+      let loc = `${base}${p}`;
+      if (!loc.endsWith('/')) loc += '/';
+      return `  <url><loc>${loc}</loc></url>`;
+    })
     .join('\n');
 
   const xml = `<?xml version="1.0" encoding="UTF-8"?>

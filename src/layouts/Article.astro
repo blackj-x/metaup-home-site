@@ -26,8 +26,16 @@ const jsonLd = {
       datePublished: date,
       dateModified: date,
       author: { '@type': 'Organization', name: isEn ? 'MetaUp Game Guides' : 'MetaUp 游戏攻略站群' },
-      publisher: { '@type': 'Organization', name: isEn ? 'MetaUp Game Guides' : 'MetaUp 游戏攻略站群' },
+      publisher: {
+        '@type': 'Organization',
+        name: isEn ? 'MetaUp Game Guides' : 'MetaUp 游戏攻略站群',
+        logo: {
+          '@type': 'ImageObject',
+          url: new URL('/og-default.png', Astro.site).href
+        }
+      },
       url: new URL(Astro.url.pathname, Astro.site).href,
+      image: new URL('/og-default.png', Astro.site).href,
     },
     {
       '@type': 'BreadcrumbList',

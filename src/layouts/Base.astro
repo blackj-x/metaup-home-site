@@ -22,6 +22,13 @@ const isHome = Astro.url.pathname === '/' || Astro.url.pathname === '/en/';
 
 const isEn = lang === 'en';
 
+// hreflang alternates (for bilingual zh root + /en/)
+const currentPath = Astro.url.pathname;
+let zhPath = isEn ? (currentPath.replace(/^\/en/, '') || '/') : currentPath;
+let enPath = isEn ? currentPath : (currentPath === '/' ? '/en/' : `/en${currentPath}`);
+const zhHref = new URL(zhPath, Astro.site).href;
+const enHref = new URL(enPath, Astro.site).href;
+
 // 网站级结构化数据
 const websiteLd = {
   '@context': 'https://schema.org',
@@ -93,6 +100,10 @@ const links = [
   <title>{title}</title>
   <meta name="description" content={description} />
   <link rel="canonical" href={canonical} />
+  <!-- hreflang for bilingual (zh root + /en/) -->
+  <link rel="alternate" hreflang="zh" href={zhHref} />
+  <link rel="alternate" hreflang="en" href={enHref} />
+  <link rel="alternate" hreflang="x-default" href={zhHref} />
   <!-- Open Graph -->
   <meta property="og:type" content={isHome ? 'website' : 'article'} />
   <meta property="og:site_name" content={SITE.name} />
