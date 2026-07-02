@@ -1,0 +1,91 @@
+---
+import Article from '../../layouts/Article.astro';
+
+const title = '2026 合作恐怖游戏观察：哪些值得建独立攻略站';
+const description =
+  'Cursed Companions、MIMESIS、The Mound 三款合作恐怖新游 + Lethal Company 作为已验证参照。我们逐一标注发售日、状态、核心机制复杂度、资料来源，以及是否适合独立建站的判断依据。';
+---
+<Article
+  title={title}
+  description={description}
+  kicker="趋势观察"
+  date="2026-07-02"
+  heading="2026 合作恐怖游戏观察"
+  lang="zh"
+>
+  <section class="sec">
+    <p>站群的选题不是追热点，而是看“这个游戏的机制复杂度、数据可验证性、长期搜索意图，是否值得我们花几个月把它做厚”。合作恐怖品类在 2025–2026 年明显升温，我们挑了三款近期/即将登场的代表，加上已经跑通的 Lethal Company 做参照，一起评估。</p>
+    <p class="hint">本文所有发售与机制信息均基于公开的 Steam 页面、开发者预告、IGN 等可靠来源（截至 2026-07）。不是新闻稿，是给“要不要建站”这个决定准备的评估框架。</p>
+  </section>
+
+  <section class="sec">
+    <h2>我们用来判断的四条标准</h2>
+    <ul class="kv">
+      <li><strong>机制数据深度</strong>：怪物行为、触发条件、数值区间、地图/环境变量是否足够丰富，能支撑一个“资料库”形态的站。</li>
+      <li><strong>可验证性与维护成本</strong>：官方更新是否频繁？社区数据源是否可靠？我们能不能在合理时间内交叉核对。</li>
+      <li><strong>视觉与结构需求</strong>：是否需要原创地图、流程图、状态表？这些正是我们目前最擅长的部分。</li>
+      <li><strong>长期玩家意图</strong>：玩家在搜什么？“XX 打法”“XX 卫星/地图”“新手怎么活”“版本变化影响”这类长尾是否会持续存在。</li>
+    </ul>
+  </section>
+
+  <section class="sec">
+    <h2>已验证参照：Lethal Company</h2>
+    <ul class="kv">
+      <li><strong>状态</strong>：2023 年 10 月 Early Access，2024 年正式 1.0 并持续更新至今。</li>
+      <li><strong>核心机制</strong>：33+ 种怪物（每种触发、行为、克制不同）、多卫星地形与室内布局、物品价值表、终端指令、天气、船舱升级路径。</li>
+      <li><strong>资料来源</strong>：游戏内反复实测 + 官方补丁 + 社区长期维护的结构化数据。</li>
+      <li><strong>建站评估</strong>：✅ 已上线（lethalcompany.metaup.pro）。深度足够、更新节奏可跟踪、地图需求强烈、玩家搜索意图极清晰，是目前合作恐怖里最成熟的模板。</li>
+    </ul>
+    <p>我们用它当标杆：新游戏如果在“数据颗粒度”和“长期可维护性”上明显弱于它，就暂时不优先单独建站。</p>
+  </section>
+
+  <section class="sec">
+    <h2>Cursed Companions（已上线）</h2>
+    <ul class="kv">
+      <li><strong>发售日 / 状态</strong>：2025-11-20 正式发布，后续 2026 年推出 1.0 内容更新（Act III、新生物等）。</li>
+      <li><strong>核心机制</strong>：语音识别恐怖——每个玩家获得一个“禁词”，说出即自伤或误伤队友；8 人合作模式 + 16 人内鬼模式；探索地牢、施法、与怪物战斗。</li>
+      <li><strong>资料来源</strong>：Steam 商店页、Crimson Forge Studios 官网预告、GameTrailers 1.0 发售预告片、社区实机视频。</li>
+      <li><strong>建站评估</strong>：⚠️ 中等潜力。语音机制本身新颖，合作沟通压力极大（和 Lethal Company 的“判断失误即团灭”有相似灵魂）。但数值层相对轻，更依赖即时语音策略与模式理解。目前数据表需求不如 LC 强烈，地图需求中等。如果后期有大量关卡/生物数值膨胀，再评估。</li>
+    </ul>
+    <p class="hint">适合先做一篇方法论补充文章，而非立刻建完整站。等它有 1–2 个大更新后再复评。</p>
+  </section>
+
+  <section class="sec">
+    <h2>MIMESIS（已上线，持续迭代）</h2>
+    <ul class="kv">
+      <li><strong>发售日 / 状态</strong>：2025-10-27 Early Access 上线，2026 年 6 月发布重大更新（AI 行为升级、地图扩展、进度系统重做）。</li>
+      <li><strong>核心机制</strong>：4 人合作生存恐怖；“诅咒之雨”降临后会出现完美模仿队友的 AI 实体（Mimesis）；玩家必须在合作与怀疑之间不断切换；修电车、资源管理、不可预测的环境。</li>
+      <li><strong>资料来源</strong>：Steam 页面（ReLU Games / KRAFTON）、官方大型更新公告、完整预告片、社区 Discord 行为讨论。</li>
+      <li><strong>建站评估</strong>：✅ 高潜力。信任/背叛机制 + AI 行为建模天然需要大量结构化描述（“这个动作像不像真人”“雨后哪些环境会变化”）。地图与资源系统有扩展空间，玩家会反复搜索“怎么分辨 Mimesis”“最佳电车路线”等。和 Lethal Company 在“信息不对称导致团灭”上高度互补，值得独立成站。</li>
+    </ul>
+  </section>
+
+  <section class="sec">
+    <h2>The Mound: Omen of Cthulhu（即将上线）</h2>
+    <ul class="kv">
+      <li><strong>发售日 / 状态</strong>：计划 2026-07-15 同步上线 PC (Steam/Epic)、PS5、Xbox Series（全平台交叉游玩）。</li>
+      <li><strong>核心机制</strong>：1–4 人合作；16 世纪征服者进入诅咒丛林寻宝；Lovecraft 式恐怖 + 幻觉系统（队友可能在你眼中变成怪物）；探索、战斗、理智管理、撤离。</li>
+      <li><strong>资料来源</strong>：IGN 实机演示预告、ACE Team 官方概述、Nacon 发布会信息、Steam 愿望单页面。</li>
+      <li><strong>建站评估</strong>：✅ 高潜力（预发布）。丛林地形 + 生物行为 + 幻觉/理智数值天然适合我们最擅长的“原创地图 + 机制拆解”。如果发售后机制颗粒度接近 Lethal Company（不同区域风险、不同生物触发、资源取舍），我们会把它列为下一个优先站。</li>
+    </ul>
+    <p class="hint">发售前我们会继续跟踪实机反馈；发售后 2–4 周内决定是否启动站建设。</p>
+  </section>
+
+  <section class="sec">
+    <h2>当前优先级小结</h2>
+    <ol class="kv">
+      <li><strong>Lethal Company</strong> —— 已证明模式，继续维护（已有站）。</li>
+      <li><strong>MIMESIS</strong> —— 机制成熟度高，建议在下一个内容周期内启动独立站。</li>
+      <li><strong>The Mound</strong> —— 7 月 15 日上线后密切观察 3–4 周，极大概率建站。</li>
+      <li><strong>Cursed Companions</strong> —— 先观察 1–2 个大更新；短期内以单篇深度文章补充为主。</li>
+    </ol>
+    <p>这个列表不是榜单，而是我们内部选题的实时输入。未来每当有新合作恐怖作品达到“机制可文档化 + 玩家长期需求”门槛，我们就会更新这篇观察。</p>
+  </section>
+
+  <section class="sec next">
+    <h2>👉 接着看</h2>
+    <p>想了解我们怎么判断一份攻略值不值得信任？读 <a href="/articles/spot-reliable-game-data">《怎么分辨一份游戏攻略数据靠不靠谱》</a>。</p>
+    <p>想看我们实际把这套标准用在内容生产上？读 <a href="/articles/how-we-make-guides">《我们怎么做游戏攻略》</a> 和 <a href="/articles/ai-search-citable-guides">《AI Search 时代我们如何做可引用攻略》</a>。</p>
+    <p>或者直接去已上线的 <a href="https://lethalcompany.metaup.pro" target="_blank" rel="noopener">致命公司攻略社</a> 感受我们对合作恐怖品类的现有厚度。</p>
+  </section>
+</Article>

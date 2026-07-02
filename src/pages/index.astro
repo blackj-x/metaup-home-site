@@ -11,6 +11,11 @@ const description =
 // 这部分会作为后续持续更新的重点，会定期补充新条目
 const updates = [
   {
+    date: '2026-07-02',
+    site: 'MetaUp 母站',
+    text: '新增双语「2026 合作恐怖游戏观察」专题 + 「AI Search 可引用攻略」方法论。首页与资源页同步加入趋势观察入口。',
+  },
+  {
     date: '2026-06-25',
     site: 'MetaUp 母站',
     text: '新增 3 篇原创编辑文 + FAQ 页面。继续扩充母站内容厚度与可信度信号。',
@@ -84,7 +89,7 @@ const jsonLd = {
         <div class="kicker">游戏攻略站群门户 · metaup.pro</div>
         <h1>把攻略做<span class="em">厚、准、原创</span></h1>
         <p class="sub">
-          MetaUp 不是又一个抄来抄去的 wiki 镜像。我们为每款游戏单独建一个专站,把它繁杂的角色、怪物、地图和机制,重新整理、逐项核对、用中英双语独立成文,再配上自己手画的 SVG 地图——让你开局前一查就懂,而不是被一屏过期数值和搬运内容劝退。母站现已支持英文分区（/en/）。这一页是站群的总入口:挑游戏、看我们怎么做攻略、读编辑精选。
+          MetaUp 不是又一个抄来抄去的 wiki 镜像。我们为每款游戏单独建一个专站,把它繁杂的角色、怪物、地图和机制,重新整理、逐项核对、用中英双语独立成文,再配上自己手画的 SVG 地图——让你开局前一查就懂，而不是被一屏过期数值和搬运内容劝退。母站现已支持英文分区（/en/）。这一页是站群的总入口：挑游戏、读编辑精选、看趋势观察与方法论。
         </p>
         <div class="hero-actions">
           <a class="primary-btn" href="#sites">进入攻略站 ↓</a>
@@ -163,6 +168,15 @@ const jsonLd = {
           </div>
           <a href="/articles">全部 →</a>
         </div>
+
+        <div class="trend-entry">
+          <a href="/articles/2026-coop-horror-watchlist">
+            <span class="art-kicker">趋势观察</span>
+            <strong>2026 合作恐怖游戏观察：哪些值得建独立攻略站</strong>
+            <span class="art-ex">Cursed Companions、MIMESIS、The Mound + Lethal Company 参照。标注发售日、机制深度与建站潜力。</span>
+          </a>
+        </div>
+
         <ul class="art-list">
           {articles.map((a) => (
             <li>
@@ -229,6 +243,13 @@ const jsonLd = {
   .art-kicker{display:inline-block;font-size:11px;font-weight:900;color:var(--brand);background:rgba(91,140,255,.14);padding:3px 9px;border-radius:6px;margin-bottom:8px}
   .art-list strong{display:block;font-size:16px;line-height:1.45;margin-bottom:6px}
   .art-ex{display:block;font-size:13.5px;color:var(--txt-dim);line-height:1.6}
+
+  .trend-entry{margin-bottom:8px}
+  .trend-entry a{display:block;background:linear-gradient(145deg,var(--bg-elev),var(--bg-card));border:1px solid var(--accent);border-radius:14px;padding:16px 18px;transition:.18s}
+  .trend-entry a:hover{border-color:#ffdf8a;transform:translateY(-2px)}
+  .trend-entry .art-kicker{background:rgba(255,203,69,.18);color:var(--accent)}
+  .trend-entry strong{display:block;font-size:15.5px;line-height:1.4;margin:4px 0 4px;color:var(--txt)}
+  .trend-entry .art-ex{font-size:13px;color:var(--txt-dim)}
 
   @media(max-width:980px){.hero{grid-template-columns:1fr}.grid-2{grid-template-columns:1fr}}
   @media(max-width:560px){h1{font-size:38px}.site-grid{grid-template-columns:1fr}}

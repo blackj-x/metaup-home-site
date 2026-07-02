@@ -1,0 +1,105 @@
+---
+import Article from '../../layouts/Article.astro';
+
+const title = 'AI Search 时代我们如何做可引用攻略';
+const description =
+  'AI 搜索引擎和概览更喜欢引用来源清晰、结构良好、持续维护的内容。这篇文章讲清楚 MetaUp 在原创图、结构化数据、事实核验、每页最后审阅等方面实际执行的标准。';
+---
+<Article
+  title={title}
+  description={description}
+  kicker="方法论"
+  date="2026-07-02"
+  heading="AI Search 时代我们如何做可引用攻略"
+  lang="zh"
+>
+  <section class="sec">
+    <p>过去两年，玩家查攻略的方式正在悄悄改变。越来越多的人不是直接打开 wiki，而是直接问 AI：“致命公司 2026 年 6 月更新后哪个怪最危险？”“MIMESIS 怎么分辨队友是真人还是 Mimesis？” AI 的回答质量，直接取决于它能找到多少“可引用”的原始内容。</p>
+    <p>我们很早就意识到：如果内容只是把别人句子换几个词、表格从 wiki 抄来、半年不更新，那它在 AI 时代几乎没有被选中的机会。我们不想做那种内容。</p>
+    <p class="hint">最后审阅：2026-07-02。本文描述的流程已在过去 8 个月的实际编辑工作中执行。</p>
+  </section>
+
+  <section class="sec">
+    <h2>我们对“可引用”的定义</h2>
+    <p>一份攻略要想被 AI 系统视为可靠引用，至少要同时满足四点：</p>
+    <ul class="kv">
+      <li><strong>可追溯</strong>：每一条关键数值或机制结论都有明确来源（游戏内测试、官方补丁、独立社区数据源）。</li>
+      <li><strong>结构清晰</strong>：AI 喜欢能被解析的列表、表格、步骤，而不是一大段机翻文字。</li>
+      <li><strong>新鲜度可验证</strong>：页面或数据块上有明确的“最后更新/审阅”时间，且历史可追踪。</li>
+      <li><strong>非镜像增值</strong>：不是简单复述别人已经写过的话，而是经过理解后的重新组织 + 实际验证。</li>
+    </ul>
+  </section>
+
+  <section class="sec">
+    <h2>我们实际执行的五条实践</h2>
+
+    <h3>1. 原创图（不只是好看，而是可解析）</h3>
+    <p>我们几乎从不直接使用游戏截图。所有地图、流程、状态关系都用 SVG 从零手绘。</p>
+    <svg width="100%" height="140" viewBox="0 0 720 140" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="数据来源与核验流程示意" style="background:#161b2c;border-radius:8px;margin:12px 0">
+      <rect x="20" y="20" width="140" height="44" rx="6" fill="#2c3450"/>
+      <text x="90" y="48" font-size="13" fill="#eef2ff" text-anchor="middle">游戏内实测</text>
+      <rect x="190" y="20" width="140" height="44" rx="6" fill="#2c3450"/>
+      <text x="260" y="48" font-size="13" fill="#eef2ff" text-anchor="middle">官方补丁</text>
+      <rect x="360" y="20" width="140" height="44" rx="6" fill="#2c3450"/>
+      <text x="430" y="48" font-size="13" fill="#eef2ff" text-anchor="middle">社区结构化源</text>
+      <rect x="530" y="20" width="170" height="44" rx="6" fill="#3a4a6e"/>
+      <text x="615" y="48" font-size="13" fill="#ffcb45" text-anchor="middle">交叉核验 + 标注版本</text>
+
+      <path d="M160 42 L190 42" stroke="#5b8cff" stroke-width="2"/>
+      <path d="M330 42 L360 42" stroke="#5b8cff" stroke-width="2"/>
+      <path d="M500 42 L530 42" stroke="#5b8cff" stroke-width="2"/>
+
+      <rect x="180" y="90" width="360" height="36" rx="6" fill="#1f2740"/>
+      <text x="360" y="113" font-size="12" fill="#9aa6c8" text-anchor="middle">只有通过两处以上独立来源的数值才会进入正文</text>
+    </svg>
+    <p>好处不只版权干净。SVG 是文本，AI 可以直接读取里面的文字和结构关系，比一张模糊截图有价值得多。我们在地图上标注的“刀点”“风险区”“任务优先级”，AI 在回答路线问题时可以直接引用。</p>
+
+    <h3>2. 结构化数据优先</h3>
+    <p>凡是能做成表格或明确列表的，我们绝不塞进一段文字里。</p>
+    <p>例如怪物触发距离、物品价值区间、身份技能效果，都用一致的字段呈现。这样无论是人读还是 AI 解析，都能准确定位到具体那一条数据，而不是猜“大概在哪一段”。</p>
+
+    <h3>3. 事实校验闸（每条数据至少过两道）</h3>
+    <p>这套流程我们在《<a href="/articles/how-we-make-guides">我们怎么做游戏攻略</a>》里详细写过，核心就是：</p>
+    <ul class="kv">
+      <li>至少两个独立来源对得上才采用；</li>
+      <li>对不上的立刻深挖版本差异或错误；</li>
+      <li>查不到或有争议的，明确标注「估计/推断」。</li>
+    </ul>
+    <p>AI 特别讨厌“看起来很确定其实是编的”内容。我们宁可少说一句，也绝不给它制造幻觉的弹药。</p>
+
+    <h3>4. 每页都有可见的最后审阅日期</h3>
+    <p>你现在看到的每一篇编辑文和攻略页，顶部或正文都会出现明确的日期（例如本文的“最后审阅：2026-07-02”）。</p>
+    <p>更重要的是，日期不是摆设。当有重大补丁时，我们会系统性回查受影响的页面，而不是只在首页挂个“持续更新”的口号。</p>
+    <p>这个习惯同时服务人类读者和 AI 系统——后者在判断“这个答案是否基于最新信息”时，日期是极强的信号。</p>
+
+    <h3>5. 绝不做 wiki 镜像</h3>
+    <svg width="100%" height="110" viewBox="0 0 720 110" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="可引用内容 vs 薄内容对比" style="background:#161b2c;border-radius:8px;margin:12px 0">
+      <rect x="30" y="15" width="300" height="80" rx="8" fill="#1f2740" stroke="#54d28a" stroke-width="2"/>
+      <text x="180" y="38" font-size="13" fill="#54d28a" text-anchor="middle">可引用内容</text>
+      <text x="55" y="60" font-size="11" fill="#9aa6c8">• 重新理解机制后自写</text>
+      <text x="55" y="78" font-size="11" fill="#9aa6c8">• 交叉核验 + 版本标注</text>
+      <text x="55" y="96" font-size="11" fill="#9aa6c8">• 原创图 + 结构化字段</text>
+
+      <rect x="390" y="15" width="300" height="80" rx="8" fill="#1f2740" stroke="#ff6b6b" stroke-width="2"/>
+      <text x="540" y="38" font-size="13" fill="#ff6b6b" text-anchor="middle">薄内容 / 镜像</text>
+      <text x="415" y="60" font-size="11" fill="#9aa6c8">• 复制粘贴或轻微改写</text>
+      <text x="415" y="78" font-size="11" fill="#9aa6c8">• 无版本信息</text>
+      <text x="415" y="96" font-size="11" fill="#9aa6c8">• 截图 + 大段机翻</text>
+    </svg>
+    <p>我们反复强调这一点，因为这是 AI 最容易分辨的差异。镜像内容在多个站点重复出现时，AI 反而会降低对它的信任权重。</p>
+  </section>
+
+  <section class="sec">
+    <h2>这些实践对站群的实际意义</h2>
+    <p>当我们评估是否为某款新游戏单独建站时（见《<a href="/articles/2026-coop-horror-watchlist">2026 合作恐怖游戏观察</a>》），上面五条标准会同时使用。</p>
+    <p>一个游戏如果“机制很酷但数据很浅”“更新极快但社区数据源混乱”，我们会优先用单篇文章覆盖，而不是立刻建一个容易腐烂的站。</p>
+    <p>反过来，如果一个游戏像 Lethal Company 那样，数值颗粒度高、需要地图、玩家会持续追问细节，我们就会投入资源把它做成可长期引用的资产。</p>
+  </section>
+
+  <section class="sec next">
+    <h2>👉 接着看</h2>
+    <p>想看具体执行细节：<a href="/articles/how-we-make-guides">我们怎么做游戏攻略</a>、<a href="/articles/maintaining-game-guides">游戏攻略的长期维护</a>。</p>
+    <p>想直接体验这些标准的成果：<a href="/resources">实用资源</a> 页和各游戏专站。</p>
+    <p>想了解我们如何挑选下一个合作恐怖站：<a href="/articles/2026-coop-horror-watchlist">2026 合作恐怖游戏观察</a>。</p>
+  </section>
+</Article>

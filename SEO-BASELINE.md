@@ -9,10 +9,10 @@
   - 英文：`/en/` 分区（独立内容，非简单翻译）
 - **端口配置**：开发服务器已调整为 `14321`（原 4321 被占用）
   - `astro.config.mjs`: `server: { host: '127.0.0.1', port: 14321 }`
-- **总页面数**（构建后）：约 31 个内容页面
+- **总页面数**（构建后）：35 个内容页面
 - **文章统计**（母站独占原创编辑文）：
-  - 中文：8 篇
-  - 英文：10 篇
+  - 中文：9 篇（含 2026 合作恐怖观察 + AI Search 可引用攻略）
+  - 英文：11 篇（对应双语对）
 - **新增核心页面**：
   - FAQ（中英）
   - Resources / 实用资源（中英）
@@ -43,6 +43,7 @@
    - sitemap 所有 canonical URL 统一添加尾斜杠（https://metaup.pro/、/articles/ 等）
    - Base.astro 输出 hreflang="zh" / "en" + hreflang="x-default"（x-default 指向中文主版本）
    - Article schema 补充 image + publisher.logo（使用 og-default.png）
+10. P0/P1 内容增强：双语「2026 合作恐怖游戏观察」专题 + 「AI Search 可引用攻略」方法论文；首页与 Resources 增加「趋势观察」入口（定位升级为站群 + 选题观察母站）；所有新文配对 alternateSlug + 可见 last reviewed + 原创 SVG 图。
 
 ## 构建状态
 - `npm run build` 成功，产出 dist/（静态资产）

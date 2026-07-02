@@ -1,0 +1,103 @@
+---
+import Article from '../../../layouts/Article.astro';
+
+const title = 'How We Make Game Guides That AI Search Engines Can Cite';
+const description =
+  'LLMs and AI overviews favor content that is traceable, cleanly structured, and honestly maintained. This is the exact production standard MetaUp uses for diagrams, structured data, fact-checking, and per-page last-reviewed dates.';
+---
+<Article
+  title={title}
+  description={description}
+  kicker="Methodology"
+  date="2026-07-02"
+  heading="How We Make Guides That AI Search Can Cite"
+  lang="en"
+>
+  <section class="sec">
+    <p>The way people look up game information is shifting. Instead of opening a wiki tab, many players now ask an AI directly: “After the June 2026 update, which Lethal Company monster is the highest priority to avoid?” or “In MIMESIS, how do I actually tell a real teammate from a Mimesis?” The quality of the answer depends entirely on whether the underlying sources are citable.</p>
+    <p>We decided early that “good enough for humans” is no longer good enough. Content that is lightly reworded wiki text, full of unversioned numbers, or six months out of date has almost zero chance of being selected by modern retrieval systems. We refuse to publish that kind of material.</p>
+    <p class="hint">Last reviewed: 2026-07-02. The process described here has been applied to every editorial and station page for the last eight months.</p>
+  </section>
+
+  <section class="sec">
+    <h2>What “citable” actually means to us</h2>
+    <p>For a guide to be treated as a trustworthy source by AI systems, it needs to satisfy four simultaneous conditions:</p>
+    <ul class="kv">
+      <li><strong>Traceable</strong> — Every critical number or mechanic conclusion carries a clear provenance (in-game testing, official patch, independent community data source).</li>
+      <li><strong>Structurally parseable</strong> — AI systems love explicit lists, tables, and step sequences far more than a wall of vaguely translated prose.</li>
+      <li><strong>Freshness is verifiable</strong> — A visible “last reviewed” or “last updated” date on the page or data block, with real history behind it.</li>
+      <li><strong>Not a mirror</strong> — The text is not a light rewrite of something already published elsewhere; it reflects genuine re-understanding plus verification work.</li>
+    </ul>
+  </section>
+
+  <section class="sec">
+    <h2>The five practices we actually run</h2>
+
+    <h3>1. Original diagrams (not decoration — parseable assets)</h3>
+    <p>We almost never use raw game screenshots. Every map, flow, and state relationship is drawn from scratch as SVG.</p>
+    <svg width="100%" height="140" viewBox="0 0 720 140" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Data sourcing and verification pipeline" style="background:#161b2c;border-radius:8px;margin:12px 0">
+      <rect x="20" y="20" width="140" height="44" rx="6" fill="#2c3450"/>
+      <text x="90" y="48" font-size="13" fill="#eef2ff" text-anchor="middle">In-game testing</text>
+      <rect x="190" y="20" width="140" height="44" rx="6" fill="#2c3450"/>
+      <text x="260" y="48" font-size="13" fill="#eef2ff" text-anchor="middle">Official patches</text>
+      <rect x="360" y="20" width="140" height="44" rx="6" fill="#2c3450"/>
+      <text x="430" y="48" font-size="13" fill="#eef2ff" text-anchor="middle">Community data</text>
+      <rect x="530" y="20" width="170" height="44" rx="6" fill="#3a4a6e"/>
+      <text x="615" y="48" font-size="13" fill="#ffcb45" text-anchor="middle">Cross-check + version</text>
+
+      <path d="M160 42 L190 42" stroke="#5b8cff" stroke-width="2"/>
+      <path d="M330 42 L360 42" stroke="#5b8cff" stroke-width="2"/>
+      <path d="M500 42 L530 42" stroke="#5b8cff" stroke-width="2"/>
+
+      <rect x="180" y="90" width="360" height="36" rx="6" fill="#1f2740"/>
+      <text x="360" y="113" font-size="12" fill="#9aa6c8" text-anchor="middle">Only values confirmed by 2+ independent sources enter the final text</text>
+    </svg>
+    <p>The benefit goes beyond clean copyright. SVGs are text. Retrieval systems can read the labels and relationships directly. When an AI needs to answer a routing or priority question, the annotations we put on task points, high-risk zones, and optimal order are usable as-is.</p>
+
+    <h3>2. Structure first</h3>
+    <p>Anything that can live in a table or a tight list stays out of paragraph form.</p>
+    <p>Monster trigger ranges, scrap values, role effects — all use consistent fields. Both humans and machines can jump straight to the exact datum instead of guessing which sentence might contain it.</p>
+
+    <h3>3. The fact-checking gate (minimum two independent passes)</h3>
+    <p>The full pipeline is described in <a href="/en/articles/how-we-build-reliable-guides">How We Build Reliable Game Guides</a>. The short version:</p>
+    <ul class="kv">
+      <li>A critical value must match in at least two unrelated places before we accept it.</li>
+      <li>Discrepancies trigger deeper investigation (version difference or outright error).</li>
+      <li>Unconfirmed or disputed numbers are explicitly labeled “estimated / inferred”.</li>
+    </ul>
+    <p>AI systems are especially hostile to confident-sounding fabrications. We would rather say less than feed hallucinations.</p>
+
+    <h3>4. Visible last-reviewed date on every page</h3>
+    <p>Every editorial and station page carries a clear date (for example the one at the top of this article). More importantly, the date is not decorative. When a major patch drops we systematically revisit every affected page instead of just claiming “we update regularly.”</p>
+    <p>This habit serves both human readers and AI retrieval. The latter treats an explicit, real last-updated signal as strong evidence of freshness.</p>
+
+    <h3>5. Zero tolerance for mirrors</h3>
+    <svg width="100%" height="110" viewBox="0 0 720 110" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Citable content vs thin/mirror content" style="background:#161b2c;border-radius:8px;margin:12px 0">
+      <rect x="30" y="15" width="300" height="80" rx="8" fill="#1f2740" stroke="#54d28a" stroke-width="2"/>
+      <text x="180" y="38" font-size="13" fill="#54d28a" text-anchor="middle">Citable content</text>
+      <text x="55" y="60" font-size="11" fill="#9aa6c8">• Re-understood and rewritten</text>
+      <text x="55" y="78" font-size="11" fill="#9aa6c8">• Cross-checked + versioned</text>
+      <text x="55" y="96" font-size="11" fill="#9aa6c8">• Original diagrams + fields</text>
+
+      <rect x="390" y="15" width="300" height="80" rx="8" fill="#1f2740" stroke="#ff6b6b" stroke-width="2"/>
+      <text x="540" y="38" font-size="13" fill="#ff6b6b" text-anchor="middle">Thin / mirror content</text>
+      <text x="415" y="60" font-size="11" fill="#9aa6c8">• Copy-paste or light paraphrase</text>
+      <text x="415" y="78" font-size="11" fill="#9aa6c8">• No version information</text>
+      <text x="415" y="96" font-size="11" fill="#9aa6c8">• Screenshots + machine text</text>
+    </svg>
+    <p>This is the single easiest distinction for AI systems to detect. When identical or near-identical text appears across many sites, retrieval weight actually drops.</p>
+  </section>
+
+  <section class="sec">
+    <h2>How this affects station selection</h2>
+    <p>When we decide whether a new co-op horror title deserves its own station (see <a href="/en/articles/2026-coop-horror-watchlist">2026 Co-op Horror Watchlist</a>), the five practices above are applied as filters.</p>
+    <p>A game with flashy mechanics but shallow verifiable data, or extremely rapid updates with chaotic community sources, will get covered in focused editorials first. Only titles that clear the same bar Lethal Company cleared — rich granularity, map demand, durable questions — become candidates for a full dedicated station.</p>
+  </section>
+
+  <section class="sec next">
+    <h2>Next reading</h2>
+    <p>Detailed execution: <a href="/en/articles/how-we-build-reliable-guides">How We Build Reliable Game Guides</a> and <a href="/en/articles/maintaining-game-guides">Maintaining Game Guides Over Time</a>.</p>
+    <p>See the standards in action: the <a href="/en/resources">Practical Resources</a> page and the live stations.</p>
+    <p>See how we apply the same lens to new titles: <a href="/en/articles/2026-coop-horror-watchlist">2026 Co-op Horror Watchlist</a>.</p>
+  </section>
+</Article>

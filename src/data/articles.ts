@@ -11,6 +11,12 @@ export interface Article {
   date: string;
   /** 正文大致原创字数（用于站内自查，不显示） */
   words: number;
+  /**
+   * If this article has a direct counterpart in the other language,
+   * set the slug of the alternate here. Only articles with this will get
+   * cross-language hreflang.
+   */
+  alternateSlug?: string;
 }
 
 export const articles: Article[] = [
@@ -21,6 +27,7 @@ export const articles: Article[] = [
     kicker: '方法论',
     date: '2026-06-16',
     words: 1500,
+    alternateSlug: 'how-we-build-reliable-guides',
   },
   {
     slug: 'coop-games-for-beginners',
@@ -29,6 +36,7 @@ export const articles: Article[] = [
     kicker: '盘点',
     date: '2026-06-16',
     words: 1700,
+    alternateSlug: 'best-beginner-coop-games',
   },
   {
     slug: 'spot-reliable-game-data',
@@ -37,6 +45,7 @@ export const articles: Article[] = [
     kicker: '玩家指南',
     date: '2026-06-16',
     words: 1300,
+    alternateSlug: 'how-to-spot-trustworthy-guides',
   },
   {
     slug: 'reading-patch-notes',
@@ -45,6 +54,7 @@ export const articles: Article[] = [
     kicker: '玩家技能',
     date: '2026-06-24',
     words: 1100,
+    alternateSlug: 'reading-game-patch-notes',
   },
   {
     slug: 'common-coop-mistakes',
@@ -53,6 +63,7 @@ export const articles: Article[] = [
     kicker: '避坑指南',
     date: '2026-06-25',
     words: 1250,
+    alternateSlug: 'common-coop-mistakes',
   },
   {
     slug: 'why-original-maps',
@@ -61,6 +72,7 @@ export const articles: Article[] = [
     kicker: '内容理念',
     date: '2026-06-25',
     words: 980,
+    alternateSlug: 'why-we-draw-maps',
   },
   {
     slug: 'maintaining-game-guides',
@@ -69,5 +81,24 @@ export const articles: Article[] = [
     kicker: '内容维护',
     date: '2026-06-25',
     words: 1100,
+    alternateSlug: 'maintaining-game-guides',
+  },
+  {
+    slug: '2026-coop-horror-watchlist',
+    title: '2026 合作恐怖游戏观察：哪些值得建独立攻略站',
+    excerpt: 'Cursed Companions、MIMESIS、The Mound 三款新游 + Lethal Company 参照。我们标注发售状态、核心机制复杂度与独立建站潜力。',
+    kicker: '趋势观察',
+    date: '2026-07-02',
+    words: 1480,
+    alternateSlug: '2026-coop-horror-watchlist',
+  },
+  {
+    slug: 'ai-search-citable-guides',
+    title: 'AI Search 时代我们如何做可引用攻略',
+    excerpt: 'AI 搜索引擎更青睐可验证、结构化、持续更新的内容。我们把这套方法论写清楚，也服务长期 E-E-A-T。',
+    kicker: '方法论',
+    date: '2026-07-02',
+    words: 1320,
+    alternateSlug: 'how-we-make-citable-guides',
   },
 ];

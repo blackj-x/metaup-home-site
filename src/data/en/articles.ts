@@ -14,6 +14,12 @@ export interface Article {
   date: string;
   /** Approx word count for internal tracking */
   words: number;
+  /**
+   * If this article has a direct counterpart in the other language,
+   * set the slug of the alternate here. Only articles with this will get
+   * cross-language hreflang.
+   */
+  alternateSlug?: string;
 }
 
 export const articles: Article[] = [
@@ -25,6 +31,7 @@ export const articles: Article[] = [
     kicker: 'Our Process',
     date: '2026-06-24',
     words: 1350,
+    alternateSlug: 'how-we-make-guides',
   },
   {
     slug: 'best-beginner-coop-games',
@@ -34,6 +41,7 @@ export const articles: Article[] = [
     kicker: 'Recommendations',
     date: '2026-06-24',
     words: 1200,
+    alternateSlug: 'coop-games-for-beginners',
   },
   {
     slug: 'how-to-spot-trustworthy-guides',
@@ -43,6 +51,7 @@ export const articles: Article[] = [
     kicker: 'Player Guide',
     date: '2026-06-24',
     words: 1100,
+    alternateSlug: 'spot-reliable-game-data',
   },
   {
     slug: 'co-op-communication-principles',
@@ -61,6 +70,7 @@ export const articles: Article[] = [
     kicker: 'Player Skills',
     date: '2026-06-24',
     words: 1050,
+    alternateSlug: 'reading-patch-notes',
   },
   {
     slug: 'building-personal-knowledge-system',
@@ -79,6 +89,7 @@ export const articles: Article[] = [
     kicker: 'Team Pitfalls',
     date: '2026-06-25',
     words: 1180,
+    alternateSlug: 'common-coop-mistakes',
   },
   {
     slug: 'why-we-draw-maps',
@@ -88,6 +99,7 @@ export const articles: Article[] = [
     kicker: 'Our Approach',
     date: '2026-06-25',
     words: 950,
+    alternateSlug: 'why-original-maps',
   },
   {
     slug: 'maintaining-game-guides',
@@ -97,5 +109,26 @@ export const articles: Article[] = [
     kicker: 'Content Maintenance',
     date: '2026-06-25',
     words: 1050,
+    alternateSlug: 'maintaining-game-guides',
+  },
+  {
+    slug: '2026-coop-horror-watchlist',
+    title: '2026 Co-op Horror Watchlist: Which Games Merit Dedicated Guide Stations',
+    excerpt:
+      'Cursed Companions, MIMESIS, The Mound plus Lethal Company as benchmark. Release status, mechanics depth, and whether each justifies its own station.',
+    kicker: 'Trend Watch',
+    date: '2026-07-02',
+    words: 1420,
+    alternateSlug: '2026-coop-horror-watchlist',
+  },
+  {
+    slug: 'how-we-make-citable-guides',
+    title: 'How We Make Game Guides That AI Search Engines Can Cite',
+    excerpt:
+      'LLMs and AI overviews reward verifiable sources, clean structure, and honest updates. Here is exactly how we design content for that reality.',
+    kicker: 'Methodology',
+    date: '2026-07-02',
+    words: 1280,
+    alternateSlug: 'ai-search-citable-guides',
   },
 ];
