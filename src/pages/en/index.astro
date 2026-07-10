@@ -9,6 +9,21 @@ const description =
 
 const updates = [
   {
+    date: '2026-07-10',
+    site: 'MetaUp',
+    text: 'Weekly rhythm: watching The Mound pre-launch window (July 15 planned). Added internal links from process editorials to Trend Watch; timeline shows latest 8 only.',
+  },
+  {
+    date: '2026-07-07',
+    site: 'MetaUp',
+    text: 'Quick Trends scan on "co-op horror 2026" shows rising searches for R.E.P.O., FEEDERS and similar. Watchlist entry traction good; routine maintenance + observation updates.',
+  },
+  {
+    date: '2026-07-04',
+    site: 'MetaUp',
+    text: '2026 Co-op Horror Watchlist and AI Search citable guides methodology are now live. Daily maintenance on updates and trend entries; monitoring feedback.',
+  },
+  {
     date: '2026-07-02',
     site: 'MetaUp',
     text: 'Added bilingual 2026 Co-op Horror Watchlist + AI Search citable guides methodology. Trend Watch entry now surfaced on home and resources.',
@@ -148,7 +163,7 @@ const jsonLd = {
           </div>
         </div>
         <ul class="timeline">
-          {updates.map((u) => (
+          {updates.slice(0, 8).map((u) => (
             <li>
               <div class="tl-head"><span class="tl-date">{u.date}</span><span class="tl-site">{u.site}</span></div>
               <p>{u.text}</p>
@@ -168,7 +183,7 @@ const jsonLd = {
 
         <div class="trend-entry">
           <a href="/en/articles/2026-coop-horror-watchlist">
-            <span class="art-kicker">Trend Watch</span>
+            <span class="art-kicker">Trend Watch · Updated 2026-07-10</span>
             <strong>2026 Co-op Horror Watchlist: Which Games Merit Dedicated Guide Stations</strong>
             <span class="art-ex">Cursed Companions, MIMESIS, The Mound + Lethal Company benchmark. Release status, mechanics depth, and station potential.</span>
           </a>

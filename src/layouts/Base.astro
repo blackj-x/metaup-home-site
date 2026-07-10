@@ -1,6 +1,8 @@
 ---
 import '../styles/global.css';
 import { SITE } from '../data/site';
+import { articles as zhArticles } from '../data/articles';
+import { articles as enArticles } from '../data/en/articles';
 
 export interface Props {
   title: string;
@@ -23,11 +25,60 @@ const isHome = Astro.url.pathname === '/' || Astro.url.pathname === '/en/';
 const isEn = lang === 'en';
 
 // hreflang alternates (for bilingual zh root + /en/)
-const currentPath = Astro.url.pathname;
-let zhPath = isEn ? (currentPath.replace(/^\/en/, '') || '/') : currentPath;
-let enPath = isEn ? currentPath : (currentPath === '/' ? '/en/' : `/en${currentPath}`);
-const zhHref = new URL(zhPath, Astro.site).href;
-const enHref = new URL(enPath, Astro.site).href;
+const currentPath = Astro.url.pathname.replace(/\/$/, ''); // normalize for logic
+
+// Helper to ensure trailing slash for hrefs (to match sitemap canonicals)
+const withTrailingSlash = (p: string) => p.endsWith('/') ? p : p + '/';
+
+let zhHref: string;
+let enHref: string;
+let shouldOutputCrossLang = true;
+
+const isArticlePage = currentPath.includes('/articles/');
+
+if (isArticlePage) {
+  // Extract slug
+  const slugMatch = currentPath.match(/\/articles\/([^\/]+)/);
+  const slug = slugMatch ? slugMatch[1] : '';
+
+  const currentList = isEn ? enArticles : zhArticles;
+  const oppositeList = isEn ? zhArticles : enArticles;
+
+  const thisArt = currentList.find(a => a.slug === slug);
+  const altSlug = thisArt?.alternateSlug;
+
+  const selfHref = new URL(withTrailingSlash(currentPath), Astro.site).href;
+
+  if (altSlug) {
+    const oppositeArt = oppositeList.find(a => a.slug === altSlug);
+    if (oppositeArt) {
+      if (isEn) {
+        zhHref = new URL(withTrailingSlash(`/articles/${altSlug}`), Astro.site).href;
+        enHref = selfHref;
+      } else {
+        zhHref = selfHref;
+        enHref = new URL(withTrailingSlash(`/en/articles/${altSlug}`), Astro.site).href;
+      }
+    } else {
+      shouldOutputCrossLang = false;
+      zhHref = selfHref;
+      enHref = selfHref;
+    }
+  } else {
+    shouldOutputCrossLang = false;
+    zhHref = selfHref;
+    enHref = selfHref;
+  }
+} else {
+  // Static pages that have 1:1 correspondence (home, lists, about, faq, resources, contact, privacy)
+  if (isEn) {
+    zhHref = new URL(withTrailingSlash(currentPath.replace(/^\/en/, '') || '/'), Astro.site).href;
+    enHref = new URL(withTrailingSlash(currentPath), Astro.site).href;
+  } else {
+    zhHref = new URL(withTrailingSlash(currentPath), Astro.site).href;
+    enHref = new URL(withTrailingSlash(currentPath === '/' ? '/en/' : `/en${currentPath}`), Astro.site).href;
+  }
+}
 
 // 网站级结构化数据
 const websiteLd = {
@@ -101,9 +152,11 @@ const links = [
   <meta name="description" content={description} />
   <link rel="canonical" href={canonical} />
   <!-- hreflang for bilingual (zh root + /en/) -->
-  <link rel="alternate" hreflang="zh" href={zhHref} />
-  <link rel="alternate" hreflang="en" href={enHref} />
-  <link rel="alternate" hreflang="x-default" href={zhHref} />
+  <link rel="alternate" hreflang={isEn ? 'en' : 'zh'} href={canonical} />
+  {shouldOutputCrossLang && (
+    <link rel="alternate" hreflang={isEn ? 'zh' : 'en'} href={isEn ? zhHref : enHref} />
+  )}
+  <link rel="alternate" hreflang="x-default" href={isEn ? zhHref : canonical} />
   <!-- Open Graph -->
   <meta property="og:type" content={isHome ? 'website' : 'article'} />
   <meta property="og:site_name" content={SITE.name} />

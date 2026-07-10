@@ -11,6 +11,21 @@ const description =
 // 这部分会作为后续持续更新的重点，会定期补充新条目
 const updates = [
   {
+    date: '2026-07-10',
+    site: 'MetaUp 母站',
+    text: '本周节奏：跟踪 The Mound（计划 7/15 发售）前观察窗口；方法论文补内链到趋势观察；动态列表只展示最近 8 条。',
+  },
+  {
+    date: '2026-07-07',
+    site: 'MetaUp 母站',
+    text: 'Trends 快速扫描「co-op horror 2026」，R.E.P.O.、FEEDERS 等新作搜索热度上升。watchlist 入口反馈良好，继续日常维护与选题观察。',
+  },
+  {
+    date: '2026-07-04',
+    site: 'MetaUp 母站',
+    text: '「2026 合作恐怖游戏观察」与「AI Search 可引用攻略」已上线。日常维护动态与入口，持续观察反馈。',
+  },
+  {
     date: '2026-07-02',
     site: 'MetaUp 母站',
     text: '新增双语「2026 合作恐怖游戏观察」专题 + 「AI Search 可引用攻略」方法论。首页与资源页同步加入趋势观察入口。',
@@ -102,7 +117,7 @@ const jsonLd = {
         <div class="stat-card">
           <div class="stat-row"><b>{liveSites.length}</b><span>已上线专站</span></div>
           <div class="stat-row"><b>{articles.length}</b><span>中文原创编辑文</span></div>
-          <div class="stat-row"><b>EN</b><span>英文编辑文已上线</span></div>
+          <div class="stat-row"><b>11</b><span>英文编辑文 + 趋势观察</span></div>
           <div class="stat-row"><b>SVG</b><span>地图全部原创手绘</span></div>
           <div class="stat-tag">每篇攻略经事实校验闸 · 查不到的数值标「估计/推断」</div>
         </div>
@@ -151,7 +166,7 @@ const jsonLd = {
           </div>
         </div>
         <ul class="timeline">
-          {updates.map((u) => (
+          {updates.slice(0, 8).map((u) => (
             <li>
               <div class="tl-head"><span class="tl-date">{u.date}</span><span class="tl-site">{u.site}</span></div>
               <p>{u.text}</p>
@@ -171,7 +186,7 @@ const jsonLd = {
 
         <div class="trend-entry">
           <a href="/articles/2026-coop-horror-watchlist">
-            <span class="art-kicker">趋势观察</span>
+            <span class="art-kicker">趋势观察 · 2026-07-10 更新</span>
             <strong>2026 合作恐怖游戏观察：哪些值得建独立攻略站</strong>
             <span class="art-ex">Cursed Companions、MIMESIS、The Mound + Lethal Company 参照。标注发售日、机制深度与建站潜力。</span>
           </a>
