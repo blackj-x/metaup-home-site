@@ -102,8 +102,8 @@ const jsonLd = {
         </p>
         <div class="hero-actions">
           <a class="primary-btn" href="#sites">Browse Game Stations ↓</a>
-          <a class="ghost-btn" href="/en/articles">Read our editorials</a>
-          <a class="ghost-btn" href="/en/resources">Practical resources</a>
+          <a class="ghost-btn" href="/en/articles/">Read our editorials</a>
+          <a class="ghost-btn" href="/en/resources/">Practical resources</a>
         </div>
       </div>
       <aside class="hero-stats" aria-label="Network overview">
@@ -176,13 +176,13 @@ const jsonLd = {
         <div class="section-head">
           <div>
             <h2>Editorials</h2>
-            <p>Original writing only available here on the mother site. Also see <a href="/en/resources">practical resources</a>.</p>
+            <p>Original writing only available here on the mother site. Also see <a href="/en/resources/">practical resources</a>.</p>
           </div>
-          <a href="/en/articles">All editorials →</a>
+          <a href="/en/articles/">All editorials →</a>
         </div>
 
         <div class="trend-entry">
-          <a href="/en/articles/2026-coop-horror-watchlist">
+          <a href="/en/articles/2026-coop-horror-watchlist/">
             <span class="art-kicker">Trend Watch · Updated 2026-07-10</span>
             <strong>2026 Co-op Horror Watchlist: Which Games Merit Dedicated Guide Stations</strong>
             <span class="art-ex">Cursed Companions, MIMESIS, The Mound + Lethal Company benchmark. Release status, mechanics depth, and station potential.</span>
@@ -192,7 +192,7 @@ const jsonLd = {
         <ul class="art-list">
           {articles.map((a) => (
             <li>
-              <a href={`/en/articles/${a.slug}`}>
+              <a href={`/en/articles/${a.slug}/`}>
                 <span class="art-kicker">{a.kicker}</span>
                 <strong>{a.title}</strong>
                 <span class="art-ex">{a.excerpt}</span>

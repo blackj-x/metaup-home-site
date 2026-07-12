@@ -108,8 +108,8 @@ const jsonLd = {
         </p>
         <div class="hero-actions">
           <a class="primary-btn" href="#sites">进入攻略站 ↓</a>
-          <a class="ghost-btn" href="/articles">看我们怎么做的</a>
-          <a class="ghost-btn" href="/resources">实用资源</a>
+          <a class="ghost-btn" href="/articles/">看我们怎么做的</a>
+          <a class="ghost-btn" href="/resources/">实用资源</a>
           <a class="ghost-btn" href="/en/">English editorials &amp; hub →</a>
         </div>
       </div>
@@ -179,13 +179,13 @@ const jsonLd = {
         <div class="section-head">
           <div>
             <h2>编辑精选</h2>
-            <p>母站独有的原创文（中文）。更多实用资源见 <a href="/resources">实用资源</a>，英文版见 <a href="/en/articles">English editorials</a>。</p>
+            <p>母站独有的原创文（中文）。更多实用资源见 <a href="/resources/">实用资源</a>，英文版见 <a href="/en/articles/">English editorials</a>。</p>
           </div>
-          <a href="/articles">全部 →</a>
+          <a href="/articles/">全部 →</a>
         </div>
 
         <div class="trend-entry">
-          <a href="/articles/2026-coop-horror-watchlist">
+          <a href="/articles/2026-coop-horror-watchlist/">
             <span class="art-kicker">趋势观察 · 2026-07-10 更新</span>
             <strong>2026 合作恐怖游戏观察：哪些值得建独立攻略站</strong>
             <span class="art-ex">Cursed Companions、MIMESIS、The Mound + Lethal Company 参照。标注发售日、机制深度与建站潜力。</span>
@@ -195,7 +195,7 @@ const jsonLd = {
         <ul class="art-list">
           {articles.map((a) => (
             <li>
-              <a href={`/articles/${a.slug}`}>
+              <a href={`/articles/${a.slug}/`}>
                 <span class="art-kicker">{a.kicker}</span>
                 <strong>{a.title}</strong>
                 <span class="art-ex">{a.excerpt}</span>

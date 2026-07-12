@@ -14,7 +14,7 @@ const jsonLd = {
       name: title,
       description,
       inLanguage: 'zh-CN',
-      url: new URL('/articles', Astro.site).href,
+      url: new URL('/articles/', Astro.site).href,
     },
     {
       '@type': 'BreadcrumbList',
@@ -30,12 +30,12 @@ const jsonLd = {
   <div class="wrap detail">
     <div class="crumb"><a href="/">首页</a> / 编辑精选</div>
     <h1>编辑<span class="em">精选</span></h1>
-    <p class="lead">这些文章只在母站存在,是各游戏专站里没有的内容:讲我们做攻略的方法、给玩家的判断工具,以及跨游戏的原创盘点与趋势观察。不灌水、不堆 SEO 关键词,只写真有信息量的东西。最新包括「2026 合作恐怖游戏观察」与 AI Search 方法论。英文原创编辑文请访问 <a href="/en/articles">/en/articles</a>。</p>
+    <p class="lead">这些文章只在母站存在,是各游戏专站里没有的内容:讲我们做攻略的方法、给玩家的判断工具,以及跨游戏的原创盘点与趋势观察。不灌水、不堆 SEO 关键词,只写真有信息量的东西。最新包括「2026 合作恐怖游戏观察」与 AI Search 方法论。英文原创编辑文请访问 <a href="/en/articles/">/en/articles</a>。</p>
 
     <ul class="art-grid">
       {articles.map((a) => (
         <li>
-          <a href={`/articles/${a.slug}`}>
+          <a href={`/articles/${a.slug}/`}>
             <span class="k">{a.kicker}</span>
             <h2>{a.title}</h2>
             <p>{a.excerpt}</p>

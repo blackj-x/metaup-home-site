@@ -4,6 +4,8 @@ import { defineConfig } from 'astro/config';
 // 母站落在根域名 metaup.pro（各游戏站为其二级域名）
 export default defineConfig({
   site: 'https://metaup.pro',
+  // 全站统一尾斜杠：生成 /about/ 而非 /about，减少 CF/宿主 307 软跳
+  trailingSlash: 'always',
   // 强制绑 127.0.0.1：本机代理工具的 fake-ip DNS 会把 localhost 解析到
   // 198.18.x.x 不可绑定段，导致 astro dev 报 EADDRNOTAVAIL
   // 端口改为 14321（原 4321 被占用）

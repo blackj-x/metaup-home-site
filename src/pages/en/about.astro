@@ -15,7 +15,7 @@ const jsonLd = {
       name: title,
       description,
       inLanguage: 'en',
-      url: new URL('/en/about', Astro.site).href,
+      url: new URL('/en/about/', Astro.site).href,
     },
     {
       '@type': 'Organization',
@@ -50,7 +50,7 @@ const jsonLd = {
         <section class="sec">
           <h2>How the content is created</h2>
           <p>All our material is created from publicly observable game data + community sources. We do not copy-paste or machine-translate. Objective facts are cross-checked. Strategic advice is written from understanding the systems. Maps are drawn as clean original SVGs.</p>
-          <p>Full details: read our editorial <a href="/en/articles/how-we-build-reliable-guides">How We Build Reliable Game Guides</a>.</p>
+          <p>Full details: read our editorial <a href="/en/articles/how-we-build-reliable-guides/">How We Build Reliable Game Guides</a>.</p>
         </section>
 
         <section class="sec">

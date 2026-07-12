@@ -11,7 +11,7 @@ const jsonLd = {
       '@type': 'FAQPage',
       name: title,
       inLanguage: 'zh-CN',
-      url: new URL('/faq', Astro.site).href,
+      url: new URL('/faq/', Astro.site).href,
     },
   ],
 };
@@ -56,7 +56,7 @@ const jsonLd = {
 
         <section class="sec">
           <h2>你们会收集我的数据吗？</h2>
-          <p>本站不要求登录，也不会主动收集个人信息。详细说明见 <a href="/privacy">隐私政策</a>。</p>
+          <p>本站不要求登录，也不会主动收集个人信息。详细说明见 <a href="/privacy/">隐私政策</a>。</p>
         </section>
       </main>
     </div>

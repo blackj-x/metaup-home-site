@@ -14,7 +14,7 @@ const jsonLd = {
       name: title,
       description,
       inLanguage: 'en',
-      url: new URL('/en/articles', Astro.site).href,
+      url: new URL('/en/articles/', Astro.site).href,
     },
     {
       '@type': 'BreadcrumbList',
@@ -38,7 +38,7 @@ const jsonLd = {
     <ul class="art-grid">
       {articles.map((a) => (
         <li>
-          <a href={`/en/articles/${a.slug}`}>
+          <a href={`/en/articles/${a.slug}/`}>
             <span class="k">{a.kicker}</span>
             <h2>{a.title}</h2>
             <p>{a.excerpt}</p>

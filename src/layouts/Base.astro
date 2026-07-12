@@ -3,6 +3,7 @@ import '../styles/global.css';
 import { SITE } from '../data/site';
 import { articles as zhArticles } from '../data/articles';
 import { articles as enArticles } from '../data/en/articles';
+import { absoluteUrl } from '../lib/url';
 
 export interface Props {
   title: string;
@@ -18,17 +19,18 @@ export interface Props {
 }
 
 const { title, description, jsonLd, active, ogImage, lang = 'zh' } = Astro.props;
-const canonical = new URL(Astro.url.pathname, Astro.site).href;
+// Canonical always trailing-slash (trailingSlash: 'always')
+const canonical = absoluteUrl(Astro.url.pathname, Astro.site);
 const ogImageUrl = new URL(ogImage ?? SITE.defaultOgImage, Astro.site).href;
-const isHome = Astro.url.pathname === '/' || Astro.url.pathname === '/en/';
+const isHome =
+  Astro.url.pathname === '/' ||
+  Astro.url.pathname === '/en/' ||
+  Astro.url.pathname === '/en';
 
 const isEn = lang === 'en';
 
 // hreflang alternates (for bilingual zh root + /en/)
 const currentPath = Astro.url.pathname.replace(/\/$/, ''); // normalize for logic
-
-// Helper to ensure trailing slash for hrefs (to match sitemap canonicals)
-const withTrailingSlash = (p: string) => p.endsWith('/') ? p : p + '/';
 
 let zhHref: string;
 let enHref: string;
@@ -47,17 +49,17 @@ if (isArticlePage) {
   const thisArt = currentList.find(a => a.slug === slug);
   const altSlug = thisArt?.alternateSlug;
 
-  const selfHref = new URL(withTrailingSlash(currentPath), Astro.site).href;
+  const selfHref = absoluteUrl(currentPath || '/', Astro.site);
 
   if (altSlug) {
     const oppositeArt = oppositeList.find(a => a.slug === altSlug);
     if (oppositeArt) {
       if (isEn) {
-        zhHref = new URL(withTrailingSlash(`/articles/${altSlug}`), Astro.site).href;
+        zhHref = absoluteUrl(`/articles/${altSlug}`, Astro.site);
         enHref = selfHref;
       } else {
         zhHref = selfHref;
-        enHref = new URL(withTrailingSlash(`/en/articles/${altSlug}`), Astro.site).href;
+        enHref = absoluteUrl(`/en/articles/${altSlug}`, Astro.site);
       }
     } else {
       shouldOutputCrossLang = false;
@@ -72,11 +74,11 @@ if (isArticlePage) {
 } else {
   // Static pages that have 1:1 correspondence (home, lists, about, faq, resources, contact, privacy)
   if (isEn) {
-    zhHref = new URL(withTrailingSlash(currentPath.replace(/^\/en/, '') || '/'), Astro.site).href;
-    enHref = new URL(withTrailingSlash(currentPath), Astro.site).href;
+    zhHref = absoluteUrl(currentPath.replace(/^\/en/, '') || '/', Astro.site);
+    enHref = absoluteUrl(currentPath || '/en', Astro.site);
   } else {
-    zhHref = new URL(withTrailingSlash(currentPath), Astro.site).href;
-    enHref = new URL(withTrailingSlash(currentPath === '/' ? '/en/' : `/en${currentPath}`), Astro.site).href;
+    zhHref = absoluteUrl(currentPath || '/', Astro.site);
+    enHref = absoluteUrl(currentPath === '' || currentPath === '/' ? '/en/' : `/en${currentPath}`, Astro.site);
   }
 }
 
@@ -85,46 +87,47 @@ const websiteLd = {
   '@context': 'https://schema.org',
   '@type': 'WebSite',
   name: SITE.name,
-  url: new URL(isEn ? '/en/' : '/', Astro.site).href,
+  url: absoluteUrl(isEn ? '/en/' : '/', Astro.site),
   inLanguage: isEn ? 'en' : 'zh-CN',
 };
 
-// Language-aware navigation
+// Language-aware navigation — all paths trailing-slash (hash anchors keep #)
+// Do not rename keys: AdSense review period needs stable nav labels + compliance reachability
 const navLinks = isEn
   ? [
       { href: '/en/', label: 'Home', key: 'home' },
       { href: '/en/#sites', label: 'Game Guides', key: 'sites' },
-      { href: '/en/articles', label: 'Editorials', key: 'articles' },
-      { href: '/en/resources', label: 'Resources', key: 'resources' },
-      { href: '/en/faq', label: 'FAQ', key: 'faq' },
-      { href: '/en/about', label: 'About', key: 'about' },
+      { href: '/en/articles/', label: 'Editorials', key: 'articles' },
+      { href: '/en/resources/', label: 'Resources', key: 'resources' },
+      { href: '/en/faq/', label: 'FAQ', key: 'faq' },
+      { href: '/en/about/', label: 'About', key: 'about' },
     ]
   : [
       { href: '/', label: '首页', key: 'home' },
       { href: '/#sites', label: '攻略站群', key: 'sites' },
-      { href: '/articles', label: '编辑精选', key: 'articles' },
-      { href: '/resources', label: '实用资源', key: 'resources' },
-      { href: '/faq', label: '常见问题', key: 'faq' },
-      { href: '/about', label: '关于', key: 'about' },
+      { href: '/articles/', label: '编辑精选', key: 'articles' },
+      { href: '/resources/', label: '实用资源', key: 'resources' },
+      { href: '/faq/', label: '常见问题', key: 'faq' },
+      { href: '/about/', label: '关于', key: 'about' },
     ];
 
-// Footer links
+// Footer links — Privacy / About / Contact always present (compliance)
 const footerLinks = isEn
   ? [
-      { href: '/en/about', label: 'About' },
-      { href: '/en/faq', label: 'FAQ' },
-      { href: '/en/privacy', label: 'Privacy' },
-      { href: '/en/contact', label: 'Contact' },
-      { href: '/en/articles', label: 'Editorials' },
-      { href: '/en/resources', label: 'Resources' },
+      { href: '/en/about/', label: 'About' },
+      { href: '/en/faq/', label: 'FAQ' },
+      { href: '/en/privacy/', label: 'Privacy' },
+      { href: '/en/contact/', label: 'Contact' },
+      { href: '/en/articles/', label: 'Editorials' },
+      { href: '/en/resources/', label: 'Resources' },
     ]
   : [
-      { href: '/about', label: '关于站群' },
-      { href: '/faq', label: '常见问题' },
-      { href: '/privacy', label: '隐私政策' },
-      { href: '/contact', label: '联系我们' },
-      { href: '/articles', label: '编辑精选' },
-      { href: '/resources', label: '实用资源' },
+      { href: '/about/', label: '关于站群' },
+      { href: '/faq/', label: '常见问题' },
+      { href: '/privacy/', label: '隐私政策' },
+      { href: '/contact/', label: '联系我们' },
+      { href: '/articles/', label: '编辑精选' },
+      { href: '/resources/', label: '实用资源' },
     ];
 
 const footerNote = isEn
@@ -133,14 +136,6 @@ const footerNote = isEn
 
 const logoText = isEn ? 'MetaUp' : 'MetaUp';
 const logoSub = isEn ? 'Game Guides' : '游戏攻略站群';
-
-
-const links = [
-  { href: '/', label: '首页', key: 'home' },
-  { href: '/#sites', label: '攻略站群', key: 'sites' },
-  { href: '/articles', label: '编辑精选', key: 'articles' },
-  { href: '/about', label: '关于', key: 'about' },
-];
 ---
 <!DOCTYPE html>
 <html lang={isEn ? 'en' : 'zh-CN'}>

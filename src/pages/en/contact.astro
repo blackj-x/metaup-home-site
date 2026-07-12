@@ -14,7 +14,7 @@ const jsonLd = {
       name: title,
       description,
       inLanguage: 'en',
-      url: new URL('/en/contact', Astro.site).href,
+      url: new URL('/en/contact/', Astro.site).href,
     },
   ],
 };
@@ -46,7 +46,7 @@ const jsonLd = {
 
         <section class="sec">
           <h2>Privacy note</h2>
-          <p>Anything you send us is used only to respond to your message. We don’t sell emails or use them for marketing. See our <a href="/en/privacy">Privacy page</a>.</p>
+          <p>Anything you send us is used only to respond to your message. We don’t sell emails or use them for marketing. See our <a href="/en/privacy/">Privacy page</a>.</p>
         </section>
       </main>
     </div>
