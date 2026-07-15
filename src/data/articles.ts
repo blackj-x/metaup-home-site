@@ -88,7 +88,7 @@ export const articles: Article[] = [
     title: '2026 合作恐怖游戏观察：哪些值得建独立攻略站',
     excerpt: 'Cursed Companions、MIMESIS、The Mound 三款新游 + Lethal Company 参照。我们标注发售状态、核心机制复杂度与独立建站潜力。',
     kicker: '趋势观察',
-    date: '2026-07-02',
+    date: '2026-07-15',
     words: 1480,
     alternateSlug: '2026-coop-horror-watchlist',
   },
