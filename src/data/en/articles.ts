@@ -117,8 +117,8 @@ export const articles: Article[] = [
     excerpt:
       'Cursed Companions, MIMESIS, The Mound plus Lethal Company as benchmark. Release status, mechanics depth, and whether each justifies its own station.',
     kicker: 'Trend Watch',
-    date: '2026-07-15',
-    words: 1420,
+    date: '2026-07-16',
+    words: 1460,
     alternateSlug: '2026-coop-horror-watchlist',
   },
   {

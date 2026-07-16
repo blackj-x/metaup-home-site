@@ -7,15 +7,15 @@ import { articles as enArticles } from '../data/en/articles';
  * - static pages: explicit map (compliance pages only bump on real edits — AdSense stability)
  */
 const STATIC_LASTMOD = {
-  '/': '2026-07-15',
-  '/articles/': '2026-07-15',
+  '/': '2026-07-16',
+  '/articles/': '2026-07-16',
   '/about/': '2026-06-16',
   '/privacy/': '2026-06-16',
   '/contact/': '2026-06-16',
   '/resources/': '2026-07-12',
   '/faq/': '2026-06-25',
-  '/en/': '2026-07-15',
-  '/en/articles/': '2026-07-15',
+  '/en/': '2026-07-16',
+  '/en/articles/': '2026-07-16',
   '/en/about/': '2026-06-24',
   '/en/privacy/': '2026-06-24',
   '/en/contact/': '2026-06-24',
